@@ -1,0 +1,81 @@
+html {
+  box-sizing: border-box;
+  /* scroll-behavior: smooth; */
+}
+
+body,
+textarea {
+  font-family: Lato, Helvetica, sans-serif;
+  margin: 0;
+  overflow-y: unset;
+  overflow-x: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: unset;
+}
+
+table {
+  max-width: 100%;
+  margin: 0 auto;
+  /* border-collapse: separate; */
+  /* border-spacing: 12px 0; */
+}
+
+table tr:first-child {
+  background: #000000;
+  color: #ffffff;
+}
+
+table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+table td {
+  font-size: 18px;
+  padding: 2px 8px;
+}
+
+.body-image-container {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.body-image-container img {
+  border: 1px solid #eeeef1;
+  border-radius: 12px;
+  max-width: 100%;
+  object-fit: contain;
+  overflow: hidden;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.page-container {
+  margin: 0 auto 0;
+  max-width: 1200px;
+  padding: 24px 0;
+  width: 96%;
+  position: relative;
+  min-height: 500px;
+}
+
+@media screen and (max-width: 768px) {
+  .page-container {
+    padding: 12px 0;
+  }
+
+  table td {
+    font-size: 14px;
+  }
+}
+
+div[data-lastpass-icon-root] {
+  display: none;
+}

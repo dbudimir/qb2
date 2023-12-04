@@ -1,0 +1,74 @@
+{
+  "aces": {
+    "hubUrl": "/basketball/tag/las-vegas-aces",
+    "logoUrl": "/static/images/logos/las-vegas-aces-logo.png",
+    "name": "Las Vegas Aces",
+    "scheduleUrl": "/schedule/las-vegas-aces"
+  },
+  "dream": {
+    "hubUrl": "/basketball/tag/atlanta-dream",
+    "logoUrl": "/static/images/logos/atlanta-dream-logo.png",
+    "name": "Atlanta Dream",
+    "scheduleUrl": "/schedule/atlanta-dream"
+  },
+  "fever": {
+    "hubUrl": "/basketball/tag/indiana-fever",
+    "logoUrl": "/static/images/logos/indiana-fever-logo.png",
+    "name": "Indiana Fever",
+    "scheduleUrl": "/schedule/indiana-fever"
+  },
+  "liberty": {
+    "hubUrl": "/basketball/tag/new-york-liberty",
+    "logoUrl": "/static/images/logos/new-york-liberty-logo.png",
+    "name": "New York Liberty",
+    "scheduleUrl": "/schedule/new-york-liberty"
+  },
+  "lynx": {
+    "hubUrl": "/basketball/tag/minnesota-lynx",
+    "logoUrl": "/static/images/logos/minnesota-lynx-logo.png",
+    "name": "Minnesota Lynx",
+    "scheduleUrl": "/schedule/minnesota-lynx"
+  },
+  "mercury": {
+    "hubUrl": "/basketball/tag/phoenix-mercury",
+    "logoUrl": "/static/images/logos/phoenix-mercury-logo.png",
+    "name": "Phoenix Mercury",
+    "scheduleUrl": "/schedule/phoenix-mercury"
+  },
+  "mystics": {
+    "hubUrl": "/basketball/tag/washington-mystics",
+    "logoUrl": "/static/images/logos/washington-mystics-logo.png",
+    "name": "Washington Mystics",
+    "scheduleUrl": "/schedule/washington-mystics"
+  },
+  "sky": {
+    "hubUrl": "/basketball/tag/chicago-sky",
+    "logoUrl": "/static/images/logos/chicago-sky-logo.png",
+    "name": "Chicago Sky",
+    "scheduleUrl": "/schedule/chicago-sky"
+  },
+  "sparks": {
+    "hubUrl": "/basketball/tag/los-angeles-sparks",
+    "logoUrl": "/static/images/logos/los-angeles-sparks-logo.png",
+    "name": "Los Angeles Sparks",
+    "scheduleUrl": "/schedule/los-angeles-sparks"
+  },
+  "storm": {
+    "hubUrl": "/basketball/tag/seattle-storm",
+    "logoUrl": "/static/images/logos/seattle-storm-logo.png",
+    "name": "Seattle Storm",
+    "scheduleUrl": "/schedule/seattle-storm"
+  },
+  "sun": {
+    "hubUrl": "/basketball/tag/connecticut-sun",
+    "logoUrl": "/static/images/logos/connecticut-sun-logo.png",
+    "name": "Connecticut Sun",
+    "scheduleUrl": "/schedule/connecticut-sun"
+  },
+  "wings": {
+    "hubUrl": "/basketball/tag/dallas-wings",
+    "logoUrl": "/static/images/logos/dallas-wings-logo.png",
+    "name": "Dallas Wings",
+    "scheduleUrl": "/schedule/dallas-wings"
+  }
+}
