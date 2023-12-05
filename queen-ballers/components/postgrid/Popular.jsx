@@ -1,7 +1,11 @@
-import Link from 'next/link'
-import Image from 'next/image'
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
 // import useSWR from 'swr'
-import styled from 'styled-components'
+import { useContext } from "react";
+import styled from "styled-components";
+import { AppContext } from "@/app/context";
 
 const PopularContainer = styled.div`
   background: #ffffff;
@@ -63,44 +67,45 @@ const PopularContainer = styled.div`
       font-size: 16px;
     }
   }
-`
+`;
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
+// // const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-async function getData() {
-  const res = await fetch('/api/admin')
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
- 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
- 
-  return res.json()
-}
- 
+// async function getData() {
+//   // const res = await fetch('/api/admin')
+//   // The return value is *not* serialized
+//   // You can return Date, Map, Set, etc.
+
+//   if (!res.ok) {
+//     // This will activate the closest `error.js` Error Boundary
+//     throw new Error('Failed to fetch data')
+//   }
+
+//   return res.json()
+// }
+
 // export default async function Page() {
 //   const data = await getData()
- 
+
 //   return <main></main>
 // }
 
-const Popular = async ({ topPosts, homePage }) => {
-  // const { data, error } = useSWR('/api/admin', fetcher)
-  const data = await getData()
+const Popular = ({ homePage }) => {
+  const adminSettings = useContext(AppContext);
 
-  let postArray
-  if (data) {
-    postArray = data.topPosts && Object.values(data.topPosts)
+  let postArray = [];
+  if (adminSettings) {
+    postArray = adminSettings.topPosts && Object.values(adminSettings.topPosts);
   }
 
   return (
     postArray && (
       <PopularContainer className="popular-posts">
         <h2 className="highlight-header">Popular Reads</h2>
-        {postArray.map((post) => (
-          <Link href={post.url}>{post.title}</Link>
+        {postArray.map((post, i) => (
+          <Link key={`post-${i}`} href={post.url}>
+            {post.title}
+          </Link>
         ))}
         {/* Shows cool graphic on home page */}
         {homePage && (
@@ -114,7 +119,7 @@ const Popular = async ({ topPosts, homePage }) => {
         )}
       </PopularContainer>
     )
-  )
-}
+  );
+};
 
-export default Popular
+export default Popular;

@@ -1,11 +1,15 @@
-'use client'
+"use client";
 
-import styled from 'styled-components';
+import { useState } from "react";
+import { getReturn } from "../../utils/getReturn";
+import { cleanPosts } from "../../utils/cleanText";
+import buildQuery from "../../utils/buildQuery";
+import styled from "styled-components";
 
 // Components
-import Post from './Post';
-import Highlight from './Highlight';
-import Popular from './Popular';
+import Post from "./Post";
+import Highlight from "./Highlight";
+import Popular from "./Popular";
 
 const LatestPostsContainer = styled.div`
   h3 {
@@ -133,42 +137,107 @@ const LatestPostsContainer = styled.div`
   }
 `;
 
-const LatestPosts = ({ latestPosts, topPosts, homePage, hideHeader }) => (
-  <LatestPostsContainer className="latest-posts-container">
-    {!hideHeader && <h3>Latest Posts</h3>}
-    <div className={`posts ${homePage ? 'home-page' : undefined}`}>
-      {
-        // List of posts
-        latestPosts.map((post, index) => {
-          // Image data
-          const first = index === 0 && homePage;
-          const featured = index === 7 || index === 11 || index === 17;
+const LoadMoreContainer = styled.div`
+  span {
+    display: block;
+    margin: 12px auto;
+    padding: 12px 24px;
+    font-weight: 600;
+    width: max-content;
+    background: #393939;
+    color: #ffffff;
+    border: 2px solid #393939;
+    cursor: pointer;
 
-          const width = first ? 720 : featured ? 800 : 490;
-          const height = first ? 400 : featured ? 305 : 305;
+    &:hover {
+      background: #b49bd3;
+      color: #393939;
+      border: 2px solid #b49bd3;
+    }
+  }
 
-          return post.type === 'popular' ? (
-            <Popular
-              key={`popular${index}`}
-              topPosts={topPosts}
-              homePage={homePage}
-            />
-          ) : post.type === 'highlights' ? (
-            <Highlight key={`highlight${index}`} highlight={post} />
+  video {
+    max-height: 100px;
+    margin: 0 auto;
+    display: block;
+  }
+`;
+
+const LatestPosts = ({ latestPosts, homePage, hideHeader }) => {
+  const [showLoader, setShowLoader] = useState(false);
+  const [morePosts, setMorePosts] = useState([]);
+
+  const getMorePosts = async () => {
+    setShowLoader(true);
+    const morePostsRes = await getReturn(
+      buildQuery({
+        objectType: "posts",
+        fields: [
+          "link",
+          "title",
+          "date",
+          "excerpt",
+          "jetpack_featured_media_url",
+        ],
+        perPage: 50,
+        page: 2,
+      })
+    );
+    const latestPosts = _.orderBy(morePostsRes, (post) => post.date, ["desc"]);
+    const cleanLatestPosts = await cleanPosts(latestPosts);
+
+    setMorePosts(cleanLatestPosts);
+    setShowLoader(false);
+  };
+
+  return (
+    <LatestPostsContainer className="latest-posts-container">
+      {!hideHeader && <h3>Latest Posts</h3>}
+      <div className={`posts ${homePage ? "home-page" : undefined}`}>
+        {
+          // List of posts
+          [...latestPosts, ...morePosts].map((post, index) => {
+            // Image data
+            const first = index === 0 && homePage;
+            const featured = index === 7 || index === 11 || index === 17;
+
+            const width = first ? 720 : featured ? 800 : 490;
+            const height = first ? 400 : featured ? 305 : 305;
+
+            return post.type === "popular" ? (
+              <Popular key={`popular${index}`} homePage={homePage} />
+            ) : post.type === "highlights" ? (
+              <Highlight key={`highlight${index}`} highlight={post} />
+            ) : (
+              <Post
+                key={`post${index}`}
+                post={post}
+                homePage={homePage}
+                width={width}
+                height={height}
+                first={first}
+              />
+            );
+          })
+        }
+      </div>
+      {homePage && (
+        <LoadMoreContainer>
+          {showLoader ? (
+            <video className="video-loader" playsInline autoPlay muted loop>
+              <source src="/static/images/loader.mp4" type="video/mp4" />
+            </video>
           ) : (
-            <Post
-              key={`post${index}`}
-              post={post}
-              homePage={homePage}
-              width={width}
-              height={height}
-              first={first}
-            />
-          );
-        })
-      }
-    </div>
-  </LatestPostsContainer>
-);
+            !morePosts.length && (
+              <span className="load-more" onClick={(e) => getMorePosts()}>
+                Load More
+              </span>
+            )
+          )}
+        </LoadMoreContainer>
+      )}
+    </LatestPostsContainer>
+  );
+};
 
 export default LatestPosts;
