@@ -1,8 +1,8 @@
-import { memo } from 'react'
-import styled from 'styled-components'
-import { FacebookShareButton, TwitterShareButton } from 'react-share'
-import FacebookIcon from '../icons/FacebookIcon'
-import TwitterIcon from '../icons/TwitterIcon'
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+import FacebookIcon from "../icons/FacebookIcon";
+import TwitterIcon from "../icons/TwitterIcon";
 
 const ShareContainer = styled.div`
   display: flex;
@@ -70,20 +70,37 @@ const ShareContainer = styled.div`
     top: 60px;
     flex-direction: row;
   }
-`
+`;
 
-const Share = ({ progress, link, metaDesc }) => (
-  <ShareContainer id="share-buttons" className={progress > 10 ? 'show' : ''}>
-    <FacebookShareButton url={`https://queenballers.club${link}`} quote={metaDesc}>
-      <FacebookIcon stroke="#ffffff" />
-    </FacebookShareButton>
-    <TwitterShareButton
-      url={`https://queenballers.club${link}`}
-      title={`${metaDesc} @queenballers`}
-    >
-      <TwitterIcon stroke="#ffffff" />
-    </TwitterShareButton>
-  </ShareContainer>
-)
+const Share = ({ progress }) => {
+  const [metaDesc, setMetaDesc] = useState("");
+  const [pagePath, setPagePath] = useState("");
 
-export default memo(Share)
+  useEffect(() => {
+    window && setPagePath(window.location.pathname);
+    const metaDesc = document
+    console.log("meta desc", metaDesc);
+    setMetaDesc(metaDesc);
+
+    // .split('<meta property="og:description" content="').pop().split('" />')[0])
+  }, []);
+
+  return (
+    <ShareContainer id="share-buttons" className={progress > 10 ? "show" : ""}>
+      <FacebookShareButton
+        url={`https://queenballers.club${pagePath}`}
+        quote={metaDesc}
+      >
+        <FacebookIcon stroke="#ffffff" />
+      </FacebookShareButton>
+      <TwitterShareButton
+        url={`https://queenballers.club${pagePath}`}
+        title={`${metaDesc} @queenballers`}
+      >
+        <TwitterIcon stroke="#ffffff" />
+      </TwitterShareButton>
+    </ShareContainer>
+  );
+};
+
+export default Share;

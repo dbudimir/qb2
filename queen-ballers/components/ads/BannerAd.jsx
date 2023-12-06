@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import useSWR from 'swr';
-import styled from 'styled-components';
+import Image from "next/image";
+
+import styled from "styled-components";
 
 const BannerAdContainer = styled.a`
   display: flex;
@@ -23,22 +23,15 @@ const BannerAdContainer = styled.a`
   }
 `;
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-const BannerAd = () => {
-  const { data, error } = useSWR('/api/admin', fetcher);
-
-  if (error) return <BannerAdContainer />;
-  if (!data) return <BannerAdContainer />;
-
+const BannerAd = ({ bannerAd }) => {
   return (
     <BannerAdContainer
-      href={data.bannerAd.bannerAdUrl}
+      href={bannerAd.bannerAdUrl}
       target="_blank"
       rel="noopener noreferrer"
     >
       <Image
-        src={data.bannerAd.bannerAdImageUrl}
+        src={bannerAd.bannerAdImageUrl}
         width={728}
         height={90}
         alt="Learn More"

@@ -1,14 +1,20 @@
 // 'use client'
 // Global styles
 import '../../public/static/style.css'
-
 import { Inter } from 'next/font/google'
-
-import StyledComponentsRegistry from '../../lib/registry'
-
 const inter = Inter({ subsets: ['latin'] })
 
+// Utils
+import { cleanText } from '../../utils/cleanText'
+import { GoogleTagManager } from '@next/third-parties/google'
+import StyledComponentsRegistry from '../../lib/registry'
 import AppContext from './context'
+
+// Components
+import NavAd from '../../components/ads/NavAd'
+import Nav from '../../components/nav/Nav'
+import BannerAd from '../../components/ads/BannerAd'
+import Footer from '../../components/Footer'
 
 // Context
 // import { createContext } from 'react'
@@ -33,15 +39,27 @@ async function getData () {
 export default async function RootLayout ({ children }) {
   const adminSettings = await getData()
 
-  console.log(adminSettings)
+  const viewOptions = {}
 
   return (
     <html lang='en'>
       <body className={inter.className}>
         <AppContext adminSettings={adminSettings}>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          <StyledComponentsRegistry>
+            <NavAd
+              bannerUrl={adminSettings.bannerUrl}
+              bannerText={adminSettings.bannerText}
+            />
+
+            <Nav viewOptions={viewOptions || {}} />
+
+            <BannerAd bannerAd={adminSettings.bannerAd} />
+            {children}
+            <Footer />
+          </StyledComponentsRegistry>
         </AppContext>
       </body>
+      <GoogleTagManager gtmId='GTM-MNGJZC9' />
     </html>
   )
 }

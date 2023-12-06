@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { memo, useState } from 'react';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 // Components
-import EnvelopeIcon from '../icons/EnvelopeIcon';
+import EnvelopeIcon from "../icons/EnvelopeIcon";
 
 const EmailFormContainer = styled.div`
   position: fixed;
@@ -131,14 +131,19 @@ const EmailFormContainer = styled.div`
   }
 `;
 
-const EmailForm = ({ progress, link, type }) => {
+const EmailForm = ({ progress, type }) => {
+  const [pagePath, setPagePath] = useState("");
   const [showThankYou, setShowThankYou] = useState(false);
   const currentDate = new Date();
 
+  useEffect(() => {
+    window && setPagePath(window.location.pathname);
+  }, []);
+
   const submitRequest = async (e) => {
     const scriptURL =
-      'https://script.google.com/macros/s/AKfycbxaHoLyCBcM-2IOtqBRMHAbtKRKcpRIVIzSsGIiEtarkEX_pWHIXnOU/exec';
-    const form = document.forms['short-demo-form'];
+      "https://script.google.com/macros/s/AKfycbxaHoLyCBcM-2IOtqBRMHAbtKRKcpRIVIzSsGIiEtarkEX_pWHIXnOU/exec";
+    const form = document.forms["short-demo-form"];
 
     e.preventDefault();
 
@@ -146,7 +151,7 @@ const EmailForm = ({ progress, link, type }) => {
 
     const res = await fetch(scriptURL, {
       body: new FormData(form),
-      method: 'POST',
+      method: "POST",
     });
     const result = await res.json();
   };
@@ -154,7 +159,7 @@ const EmailForm = ({ progress, link, type }) => {
   return (
     <EmailFormContainer
       id="email-form"
-      className={`${progress > 10 ? 'show' : ''}${type || ''}`}
+      className={`${progress > 10 ? "show" : ""}${type || ""}`}
     >
       <EnvelopeIcon stroke="#ffffff" />
       {showThankYou ? (
@@ -172,7 +177,7 @@ const EmailForm = ({ progress, link, type }) => {
               autoComplete="email"
               required
             />
-            <input name="slug" type="hidden" value={link} required />
+            <input name="slug" type="hidden" value={pagePath} required />
             <input name="date" type="hidden" value={currentDate} required />
             <button type="submit">Sign Up</button>
           </form>
@@ -182,4 +187,4 @@ const EmailForm = ({ progress, link, type }) => {
   );
 };
 
-export default memo(EmailForm);
+export default EmailForm;

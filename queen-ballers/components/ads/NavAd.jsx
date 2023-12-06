@@ -1,7 +1,6 @@
-'use client';
+"use client";
 
-import useSWR from 'swr';
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const NavAdContainer = styled.div`
   background: #7c14cc;
@@ -25,39 +24,16 @@ const NavAdContainer = styled.div`
       transform: scale(1.1);
     }
   }
-
-  /* @keyframes heightAnimation {
-    0% {
-      height: 0px;
-    }
-    80% {
-      height: 0px;
-    }
-    100% {
-      height: 44px;
-    }
-  } */
 `;
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-const NavAd = () => {
-  const { data, error } = useSWR('/api/admin', fetcher);
-
-  let navAdLink;
-  if (error) {
-    navAdLink = <a />;
-  } else if (!data) {
-    navAdLink = <a />;
-  } else {
-    navAdLink = (
-      <a href={data.bannerUrl} target="_blank" rel="noreferrer">
-        {data.bannerText}
+const NavAd = ({ bannerUrl, bannerText }) => {
+  return (
+    <NavAdContainer>
+      <a href={bannerUrl} target="_blank" rel="noreferrer">
+        {bannerText}
       </a>
-    );
-  }
-
-  return <NavAdContainer>{navAdLink}</NavAdContainer>;
+    </NavAdContainer>
+  );
 };
 
 export default NavAd;

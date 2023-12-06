@@ -1,9 +1,9 @@
-import { useState, useEffect, memo } from 'react'
-import styled from 'styled-components'
-import Image from 'next/image'
+import { useState, useEffect, memo } from "react";
+import styled from "styled-components";
+import Image from "next/image";
 
 // Components
-import EmailForm from './EmailForm'
+import EmailForm from "./EmailForm";
 
 const DonateBarContainer = styled.form`
   align-items: center;
@@ -72,17 +72,20 @@ const DonateBarContainer = styled.form`
       transform: translate(-2px, 2px);
     }
   }
-`
+`;
 
 const DonateBar = ({ progress }) => {
-  const [path, setPath] = useState()
+  const [path, setPath] = useState();
 
   useEffect(() => {
-    !path && setPath(window.location.pathname)
-  }, [path])
+    !path && setPath(window.location.pathname);
+  }, [path]);
 
   return (
-    <DonateBarContainer id="donate-bar" className={progress > 50 && progress < 95 ? 'show' : ''}>
+    <DonateBarContainer
+      id="donate-bar"
+      className={progress > 50 && progress < 95 ? "show" : ""}
+    >
       {/* eslint-disable-next-line react/no-unescaped-entities */}
       <span>Don't miss stories. Sign up today!</span>
       <span className="mobile">Support Queen Ballers </span>
@@ -95,9 +98,9 @@ const DonateBar = ({ progress }) => {
         <Image src="/static/images/venmo.svg" alt="Venmo logo" height={16} width={84} />
       </a> */}
 
-      {path && <EmailForm link={path} type="footer bar" />}
+      {path && <EmailForm type="footer bar" />}
     </DonateBarContainer>
-  )
-}
+  );
+};
 
-export default memo(DonateBar)
+export default memo(DonateBar);
