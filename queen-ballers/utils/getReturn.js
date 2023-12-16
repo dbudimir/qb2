@@ -1,16 +1,7 @@
-const axios = require('axios')
 const buildQuery = require('./buildQuery')
 const _ = require('lodash')
 
 const getReturn = async url => {
-  console.log('getReturn url', url)
-  // return await fetch(`https://queenballers.wpcomstaging.com/wp-json/wp/v2/${url}`)
-
-  // return axios
-  //   .get(url)
-  //   .then((response) => response.data)
-  //   .catch((error) => console.log(error))
-
   try {
     const res = await fetch(url)
 
@@ -31,17 +22,18 @@ const getPage = async pageId => {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
   }
-
-  // console.log('do this')
-  // const page = await getReturn(`${process.env.WP_API}/pages/${pageId}`)
-
-  // return page
 }
 
 const getPost = async postSlug => {
-  const post = await getReturn(`${process.env.WP_API}/posts?slug=${postSlug}`)
-
-  return post[0]
+  try {
+    const res = await fetch(
+      `https://queenballers.wpcomstaging.com/wp-json/wp/v2/posts?slug=${postSlug}`
+    )
+    return res.json()
+  } catch (error) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
 }
 
 const getTag = async tagSlug => {

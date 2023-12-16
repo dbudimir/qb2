@@ -1,7 +1,6 @@
-import { memo } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import styled from 'styled-components'
+import Image from "next/image";
+import Link from "next/link";
+import styled from "styled-components";
 
 const LogoContainer = styled.div`
   position: absolute;
@@ -70,7 +69,7 @@ const LogoContainer = styled.div`
 
     .mask:after {
       pointer-events: none;
-      content: '';
+      content: "";
       top: 0;
       width: 100%;
       height: 100%;
@@ -84,11 +83,11 @@ const LogoContainer = styled.div`
       @keyframes shine { 0% { transform: translate(-100%, 0%); } 100% { transform: translate(200%, 0); } }
     }
   }
-`
+`;
 
 const NavLogo = ({ scroll }) => (
   <Link href="/">
-    <LogoContainer className={`logo ${scroll && 'sticky'}`}>
+    <LogoContainer className={`logo ${scroll && "sticky"}`}>
       <div className="mask" />
       <Image
         src="/static/images/queen-ballers-icon-v2.png"
@@ -99,6 +98,6 @@ const NavLogo = ({ scroll }) => (
       />
     </LogoContainer>
   </Link>
-)
+);
 
-export default memo(NavLogo)
+export default NavLogo;

@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 
@@ -103,4 +103,4 @@ const DonateBar = ({ progress }) => {
   );
 };
 
-export default memo(DonateBar);
+export default DonateBar;

@@ -77,12 +77,13 @@ const Share = ({ progress }) => {
   const [pagePath, setPagePath] = useState("");
 
   useEffect(() => {
+    // Set the page path for the share buttons
     window && setPagePath(window.location.pathname);
-    const metaDesc = document
-    console.log("meta desc", metaDesc);
-    setMetaDesc(metaDesc);
-
-    // .split('<meta property="og:description" content="').pop().split('" />')[0])
+    
+    // Set the meta description for the share buttons
+    const metaDescTag = document.querySelector('meta[name="description"]')
+    const metaDescContent = metaDescTag && metaDescTag.getAttribute('content')
+    setMetaDesc(metaDescContent);
   }, []);
 
   return (

@@ -1,6 +1,6 @@
-import { memo, useState } from 'react'
-import Link from 'next/link'
-import styled from 'styled-components'
+import { useState } from "react";
+import Link from "next/link";
+import styled from "styled-components";
 
 const DropdownContainer = styled.div`
   padding: 6px;
@@ -167,21 +167,21 @@ const DropdownContainer = styled.div`
       }
     }
   }
-`
+`;
 
 const links = [
-  { text: 'QBC', href: 'http://sleeperbear.com/' },
-  { text: 'Shirts', href: '/shop/shirts' },
-  { text: 'Shorts', href: '/shop/shorts' },
-  { text: 'Hoodies', href: '/shop/hoodies' },
-  { text: 'Pants', href: '/shop/pants' },
-  { text: 'Shoes', href: '/shop/shoes' },
-  { text: 'Basketballs', href: '/shop/basketballs' },
-]
+  { text: "QBC", href: "http://sleeperbear.com/" },
+  { text: "Shirts", href: "/shop/shirts" },
+  { text: "Shorts", href: "/shop/shorts" },
+  { text: "Hoodies", href: "/shop/hoodies" },
+  { text: "Pants", href: "/shop/pants" },
+  { text: "Shoes", href: "/shop/shoes" },
+  { text: "Basketballs", href: "/shop/basketballs" },
+];
 
 const WNBADropdown = ({ show }) => {
   return (
-    <DropdownContainer className={`dropdown-window ${show && 'show'}`}>
+    <DropdownContainer className={`dropdown-window ${show && "show"}`}>
       <div className="links">
         {links.map((link, i) => (
           <Link key={`$link${i}`} href={link.href}>
@@ -190,7 +190,7 @@ const WNBADropdown = ({ show }) => {
         ))}
       </div>
     </DropdownContainer>
-  )
-}
+  );
+};
 
-export default memo(WNBADropdown)
+export default WNBADropdown;

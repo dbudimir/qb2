@@ -1,8 +1,7 @@
-import { memo } from 'react'
-import styled from 'styled-components'
+import styled from "styled-components";
 
 // Components
-import SocialLinks from '../shared/SocialLinks'
+import SocialLinks from "../shared/SocialLinks";
 
 const UpperContainer = styled.div`
   width: 100%;
@@ -42,7 +41,7 @@ const UpperContainer = styled.div`
       }
     }
   }
-`
+`;
 
 const NavUpper = ({ upperNavRef }) => (
   <UpperContainer ref={upperNavRef}>
@@ -51,6 +50,6 @@ const NavUpper = ({ upperNavRef }) => (
       <SocialLinks />
     </div>
   </UpperContainer>
-)
+);
 
-export default memo(NavUpper)
+export default NavUpper;

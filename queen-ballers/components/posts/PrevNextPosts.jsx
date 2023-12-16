@@ -1,14 +1,21 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import styled from 'styled-components';
-import Link from 'next/link';
-import Image from 'next/image';
+const dayjs = require("dayjs");
+const utc = require("dayjs/plugin/utc");
+const timezone = require("dayjs/plugin/timezone");
 
-import { cleanPosts } from '../../utils/cleanText';
-import { getReturn, getPost } from '../../utils/getReturn';
-import buildQuery from '../../utils/buildQuery';
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+import styled from "styled-components";
+import Link from "next/link";
+import Image from "next/image";
+
+import { cleanPosts } from "../../utils/cleanText";
+import { getReturn, getPost } from "../../utils/getReturn";
+import buildQuery from "../../utils/buildQuery";
 
 const PrevNextPostsContainer = styled.div`
   max-width: 720px;
@@ -73,69 +80,89 @@ const PrevNextPostsContainer = styled.div`
 
 const PrevNextPosts = ({ currentPostDate }) => {
   const [nextPrev, setNextPrev] = useState([]);
+  // const [pagePath, setPagePath] = useState(null);
+
+  const generateItems = async (currentPostDate) => {
+    console.log("do generateItems");
+
+    const postDate = dayjs(currentPostDate);
+
+    const getPostBeforeQuery = buildQuery({
+      objectType: "posts",
+      fields: [
+        "link",
+        "title",
+        "date",
+        "excerpt",
+        "jetpack_featured_media_url",
+      ],
+      perPage: 3,
+      before: postDate.toISOString(),
+      orderby: "date",
+      order: "desc",
+    });
+
+    const getPostAfterQuery = buildQuery({
+      objectType: "posts",
+      fields: [
+        "link",
+        "title",
+        "date",
+        "excerpt",
+        "jetpack_featured_media_url",
+      ],
+      perPage: 3,
+      after: postDate.toISOString(),
+      orderby: "date",
+      order: "asc",
+    });
+
+    const before = await getReturn(getPostBeforeQuery);
+    const after = await getReturn(getPostAfterQuery);
+    const pagePath = window.location.pathname;
+
+    const filteredBefore = before.filter(
+      ({ link, date }) =>
+        !link.includes(pagePath) && date < postDate.toISOString()
+    );
+
+    const filteredAfter = after.filter(
+      ({ link, date }) =>
+        !link.includes(pagePath) && date > postDate.toISOString()
+    );
+
+    let posts = [];
+
+    filteredBefore[0] && posts.push(filteredBefore[0]);
+    filteredAfter[0] && posts.push(filteredAfter[0]);
+
+    const cleanedPosts = await cleanPosts(posts);
+
+    setNextPrev(cleanedPosts);
+  };
 
   useEffect(() => {
-    (async () => {
-      const postDate = new Date(currentPostDate);
-
-      const getPostBeforeQuery = buildQuery({
-        objectType: 'posts',
-        fields: [
-          'link',
-          'title',
-          'date',
-          'excerpt',
-          'jetpack_featured_media_url',
-        ],
-        perPage: 2,
-        before: postDate.toISOString(),
-        orderby: 'date',
-        order: 'desc',
-      });
-
-      const getPostAfterQuery = buildQuery({
-        objectType: 'posts',
-        fields: [
-          'link',
-          'title',
-          'date',
-          'excerpt',
-          'jetpack_featured_media_url',
-        ],
-        perPage: 2,
-        after: postDate.toISOString(),
-        orderby: 'date',
-        order: 'asc',
-      });
-
-      const before = await getReturn(getPostBeforeQuery);
-      const after = await getReturn(getPostAfterQuery);
-
-      const cleanedPosts = await cleanPosts([
-        before[0],
-        after[1] ? after[1] : {},
-      ]);
-
-      setNextPrev(cleanedPosts);
-    })();
-  }, [currentPostDate]);
+    window && !nextPrev.length && generateItems(currentPostDate);
+  });
 
   return (
     <PrevNextPostsContainer className="next-prev-post">
       {nextPrev.map((postItem, i) => {
         return (
-          <Link href={postItem?.link} key={`nexPrev${i}`}>
-            <span>{`${i === 0 ? 'Previous' : 'Next'} Post`}</span>
-            <div className="image-container prev-next">
-              <Image
-                src={postItem.image}
-                alt={postItem.title}
-                height={240}
-                width={360}
-              />
-            </div>
-            <span>{postItem?.title}</span>
-          </Link>
+          postItem && (
+            <Link href={postItem?.link} key={`nexPrev${i}`}>
+              <span>{`${i === 0 ? "Previous" : "Next"} Post`}</span>
+              <div className="image-container prev-next">
+                <Image
+                  src={postItem.image}
+                  alt={postItem.title}
+                  height={240}
+                  width={360}
+                />
+              </div>
+              <span>{postItem?.title}</span>
+            </Link>
+          )
         );
       })}
     </PrevNextPostsContainer>

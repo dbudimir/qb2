@@ -1,9 +1,9 @@
-import { memo, useRef, useEffect } from 'react'
-import Router from 'next/router'
-import styled from 'styled-components'
+import { useRef, useEffect } from "react";
+import Router from "next/router";
+import styled from "styled-components";
 
 // Components
-import SearchIcon from './icons/SearchIcon'
+import SearchIcon from "./icons/SearchIcon";
 
 const SearchBoxContainer = styled.div`
   align-items: center;
@@ -81,37 +81,47 @@ const SearchBoxContainer = styled.div`
       }
     }
   }
-`
+`;
 
 const SearchBox = ({ scroll, showSearch, setShowSearch }) => {
-  const searchBar = useRef(null)
+  const searchBar = useRef(null);
   //
   const runSearch = () => {
-    Router.push(`/search/${searchBar.current.value}`).then(() => window.scrollTo(0, 0))
-    searchBar.current.value = ''
-    setShowSearch(!showSearch)
-  }
+    Router.push(`/search/${searchBar.current.value}`).then(() =>
+      window.scrollTo(0, 0)
+    );
+    searchBar.current.value = "";
+    setShowSearch(!showSearch);
+  };
 
   useEffect(() => {
     setTimeout(() => {
-      searchBar.current.focus()
-    }, 500)
-  }, [showSearch])
+      searchBar.current.focus();
+    }, 500);
+  }, [showSearch]);
 
   return (
-    <SearchBoxContainer className={`search-input ${scroll && 'sticky'} ${showSearch && 'show'}`}>
+    <SearchBoxContainer
+      className={`search-input ${scroll && "sticky"} ${showSearch && "show"}`}
+    >
       <div className="input-container">
         <input
           type="text"
           placeholder="Search..."
           ref={searchBar}
-          onKeyPress={(e) => e.key === 'Enter' && showSearch && runSearch()}
+          onKeyPress={(e) => e.key === "Enter" && showSearch && runSearch()}
         />
-        <span onClick={() => searchBar.current.value.length > 0 && runSearch()}>SEARCH</span>
+        <span onClick={() => searchBar.current.value.length > 0 && runSearch()}>
+          SEARCH
+        </span>
       </div>
-      <SearchIcon stroke="#000000" showSearch={showSearch} setShowSearch={setShowSearch} />
+      <SearchIcon
+        stroke="#000000"
+        showSearch={showSearch}
+        setShowSearch={setShowSearch}
+      />
     </SearchBoxContainer>
-  )
-}
+  );
+};
 
-export default memo(SearchBox)
+export default SearchBox;

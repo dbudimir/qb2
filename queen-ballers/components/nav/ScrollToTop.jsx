@@ -1,6 +1,5 @@
-import { memo } from 'react'
-import styled from 'styled-components'
-import CarrotDownIcon from '../icons/CarrotDownIcon'
+import styled from "styled-components";
+import CarrotDownIcon from "../icons/CarrotDownIcon";
 
 const ScrollToTopContainer = styled.div`
   position: fixed;
@@ -53,20 +52,20 @@ const ScrollToTopContainer = styled.div`
       transform: scaleY(-1);
     }
   }
-`
+`;
 
 const ScrollToTop = ({ progress }) => (
   <ScrollToTopContainer
-    className={`${progress > 10 ? 'show' : ''} ${
-      progress > 50 && progress < 95 ? 'with-donate-bar' : ''
+    className={`${progress > 10 ? "show" : ""} ${
+      progress > 50 && progress < 95 ? "with-donate-bar" : ""
     }`}
-    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
   >
     <span>Scroll To Top</span>
     <div>
       <CarrotDownIcon stroke="#ffffff" />
     </div>
   </ScrollToTopContainer>
-)
+);
 
-export default memo(ScrollToTop)
+export default ScrollToTop;

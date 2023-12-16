@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { memo, useRef, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Head from 'next/head';
+import { useRef, useEffect, useState } from "react";
+import styled from "styled-components";
+import Head from "next/head";
 
 const LazyLoaderContainer = styled.figure`
   width: 100%;
@@ -70,24 +70,24 @@ const LazyLoader = ({ index, classes, type, children }) => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', loadElm, ['once']);
-    return () => window.removeEventListener('scroll', loadElm, ['once']);
+    window.addEventListener("scroll", loadElm, ["once"]);
+    return () => window.removeEventListener("scroll", loadElm, ["once"]);
   }, []);
 
   return (
     <>
       <Head>
-        {type === 'tiktok' && loadContent && (
+        {type === "tiktok" && loadContent && (
           <script src="https://www.tiktok.com/embed.js" defer />
         )}
-        {type === 'twitter' && loadContent && (
+        {type === "twitter" && loadContent && (
           <script
             async
             src="https://platform.twitter.com/widgets.js"
             charSet="utf-8"
           />
         )}
-        {type === 'pinterest' && loadContent && (
+        {type === "pinterest" && loadContent && (
           <script async defer src="https://assets.pinterest.com/js/pinit.js" />
         )}
       </Head>
@@ -105,4 +105,4 @@ const LazyLoader = ({ index, classes, type, children }) => {
   );
 };
 
-export default memo(LazyLoader);
+export default LazyLoader;

@@ -5,7 +5,7 @@ import Image from "next/image";
 // import useSWR from 'swr'
 import { useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "@/app/context";
+import { AppContext } from "src/app/context";
 
 const PopularContainer = styled.div`
   background: #ffffff;
@@ -69,27 +69,6 @@ const PopularContainer = styled.div`
   }
 `;
 
-// // const fetcher = (...args) => fetch(...args).then((res) => res.json())
-
-// async function getData() {
-//   // const res = await fetch('/api/admin')
-//   // The return value is *not* serialized
-//   // You can return Date, Map, Set, etc.
-
-//   if (!res.ok) {
-//     // This will activate the closest `error.js` Error Boundary
-//     throw new Error('Failed to fetch data')
-//   }
-
-//   return res.json()
-// }
-
-// export default async function Page() {
-//   const data = await getData()
-
-//   return <main></main>
-// }
-
 const Popular = ({ homePage }) => {
   const adminSettings = useContext(AppContext);
 
@@ -103,7 +82,7 @@ const Popular = ({ homePage }) => {
       <PopularContainer className="popular-posts">
         <h2 className="highlight-header">Popular Reads</h2>
         {postArray.map((post, i) => (
-          <Link key={`post-${i}`} href={post.url}>
+          <Link key={`popular-post-${i}`} href={post.url}>
             {post.title}
           </Link>
         ))}

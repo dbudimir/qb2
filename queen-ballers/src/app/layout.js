@@ -1,24 +1,18 @@
 // 'use client'
 // Global styles
-import '../../public/static/style.css'
+import '../../public/static/style.scss'
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 // Utils
-import { cleanText } from '../../utils/cleanText'
 import { GoogleTagManager } from '@next/third-parties/google'
 import StyledComponentsRegistry from '../../lib/registry'
 import AppContext from './context'
-
 // Components
 import NavAd from '../../components/ads/NavAd'
 import Nav from '../../components/nav/Nav'
 import BannerAd from '../../components/ads/BannerAd'
 import Footer from '../../components/Footer'
-
-// Context
-// import { createContext } from 'react'
-// const AdminSettingsContext = createContext()
 
 // export const metadata = {
 //   title: 'Create Next App',
@@ -59,6 +53,7 @@ export default async function RootLayout ({ children }) {
           </StyledComponentsRegistry>
         </AppContext>
       </body>
+
       <GoogleTagManager gtmId='GTM-MNGJZC9' />
     </html>
   )
