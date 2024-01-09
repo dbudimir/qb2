@@ -55,7 +55,6 @@ const PrevNextPostsContainer = styled.div`
     width: 100%;
     height: 240px;
     margin: 12px auto;
-    /* overflow: hidden !important; */
 
     img {
       max-width: 100%;
@@ -80,11 +79,8 @@ const PrevNextPostsContainer = styled.div`
 
 const PrevNextPosts = ({ currentPostDate }) => {
   const [nextPrev, setNextPrev] = useState([]);
-  // const [pagePath, setPagePath] = useState(null);
 
   const generateItems = async (currentPostDate) => {
-    console.log("do generateItems");
-
     const postDate = dayjs(currentPostDate);
 
     const getPostBeforeQuery = buildQuery({
@@ -132,7 +128,6 @@ const PrevNextPosts = ({ currentPostDate }) => {
     );
 
     let posts = [];
-
     filteredBefore[0] && posts.push(filteredBefore[0]);
     filteredAfter[0] && posts.push(filteredAfter[0]);
 

@@ -1,23 +1,24 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import styled from "styled-components";
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { usePathname } from 'next/navigation';
 
 // Components
-import NavLogo from "./NavLogo";
-import NavUpper from "./NavUpper";
-import SearchBox from "../SearchBox";
-import GrabIcon from "../icons/GrabIcon";
-import CarrotDownIcon from "../icons/CarrotDownIcon";
-import WNBADropdown from "./WNBADropdown";
-import ShopDropdown from "./ShopDropdown";
-import EmailForm from "../shared/EmailForm";
-import Share from "../shared/Share";
-import DonateBar from "../shared/DonateBar";
-import ScrollToTop from "./ScrollToTop";
+import NavLogo from './NavLogo';
+import NavUpper from './NavUpper';
+import SearchBox from '../SearchBox';
+import GrabIcon from '../icons/GrabIcon';
+import CarrotDownIcon from '../icons/CarrotDownIcon';
+import WNBADropdown from './WNBADropdown';
+import ShopDropdown from './ShopDropdown';
+import EmailForm from '../shared/EmailForm';
+import Share from '../shared/Share';
+import DonateBar from '../shared/DonateBar';
+import ScrollToTop from './ScrollToTop';
 
-// Styles
+// Styles // import order matters
 const NavLower = styled.div`
   font-weight: 600;
   position: sticky;
@@ -165,7 +166,16 @@ const NavLower = styled.div`
 `;
 
 const Nav = ({ viewOptions }) => {
-  const { progressBar, emailForm, shareButtons = true, donateBar } = viewOptions;
+  const pathname = usePathname();
+  const isBlogPost =
+    pathname.includes('/basketball/') && !pathname.includes('/tag/');
+
+  const {
+    progressBar = isBlogPost,
+    emailForm = isBlogPost,
+    shareButtons = isBlogPost,
+    donateBar = true,
+  } = viewOptions;
   //
   const upperNavRef = useRef(null);
   const [showMenu, setShowMenu] = useState(false);
@@ -178,7 +188,7 @@ const Nav = ({ viewOptions }) => {
   useEffect(
     () =>
       window.addEventListener(
-        "scroll",
+        'scroll',
         () =>
           setNavLayout({
             scroll:
@@ -188,7 +198,7 @@ const Nav = ({ viewOptions }) => {
               (window.pageYOffset / (document.body.clientHeight - 1000)) * 100,
           }),
         { passive: true },
-        ["once"]
+        ['once']
       ),
     []
   );
@@ -203,12 +213,12 @@ const Nav = ({ viewOptions }) => {
       <NavLogo scroll={scroll} />
       <NavUpper upperNavRef={upperNavRef} />
       <NavLower
-        className={`${scroll && "sticky"} ${
-          (showShopDropDown || showDropdown) && "show-dropdown"
+        className={`${scroll && 'sticky'} ${
+          (showShopDropDown || showDropdown) && 'show-dropdown'
         }`}
       >
         <div className="menu-items">
-          <div className={`nav ${showMenu ? "show" : ""}`}>
+          <div className={`nav ${showMenu ? 'show' : ''}`}>
             <Link href="/basketball-analysis">Welcome</Link>
             <div className="dropdown">
               <span onClick={(e) => setShowDropdown(!showDropdown)}>WNBA</span>

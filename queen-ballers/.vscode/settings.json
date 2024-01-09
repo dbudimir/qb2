@@ -1,0 +1,23 @@
+{
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": false,
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.ignoreWords": ["hubspot", "hubspotutk", "push", "to"],
+  "cSpell.words": ["autopay", "autopays"],
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#b565f3",
+    "statusBar.background": "#b565f3",
+    "statusBar.foreground": "#ffffff",
+    "tab.activeBorderTop": "#b565f3", // Active Tab Top Highlighting
+    "activityBar.foreground": "#b565f3"
+  },
+  "window.title": "${activeEditorMedium}${separator}${rootName}",
+  "prettier.singleQuote": true,
+  "editor.formatOnSave": true
+}

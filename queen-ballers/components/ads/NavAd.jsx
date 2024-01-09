@@ -1,10 +1,14 @@
-"use client";
+'use client';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const NavAdContainer = styled.div`
   background: #7c14cc;
   overflow: hidden;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   a {
     font-weight: 500;
@@ -15,10 +19,6 @@ const NavAdContainer = styled.div`
     text-decoration: none;
     letter-spacing: 0.5px;
     transition: all 0.25s ease-in-out;
-    min-height: 46px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
     &:hover {
       transform: scale(1.1);

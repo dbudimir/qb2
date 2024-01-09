@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
-import Image from "next/image";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import Image from 'next/image';
 
 // Components
-import EmailForm from "./EmailForm";
+import EmailForm from './EmailForm';
 
-const DonateBarContainer = styled.form`
+const DonateBarContainer = styled.div`
   align-items: center;
   background: #393939;
   bottom: 0px;
@@ -84,7 +84,7 @@ const DonateBar = ({ progress }) => {
   return (
     <DonateBarContainer
       id="donate-bar"
-      className={progress > 50 && progress < 95 ? "show" : ""}
+      className={progress > 50 && progress < 95 ? 'show' : ''}
     >
       {/* eslint-disable-next-line react/no-unescaped-entities */}
       <span>Don't miss stories. Sign up today!</span>

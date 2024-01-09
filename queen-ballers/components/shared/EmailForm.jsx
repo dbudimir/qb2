@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 // Components
-import EnvelopeIcon from "../icons/EnvelopeIcon";
+import EnvelopeIcon from '/components/icons/EnvelopeIcon';
 
 const EmailFormContainer = styled.div`
   position: fixed;
@@ -73,8 +73,7 @@ const EmailFormContainer = styled.div`
     color: #000000;
     width: 220px;
     font-weight: 400;
-    font-size: 20px;
-    letter-spacing: 0.25px;
+    font-size: 19px;
     line-height: 1.5;
     height: 148px;
     box-shadow: -4px 4px #b49bd3;
@@ -132,7 +131,7 @@ const EmailFormContainer = styled.div`
 `;
 
 const EmailForm = ({ progress, type }) => {
-  const [pagePath, setPagePath] = useState("");
+  const [pagePath, setPagePath] = useState('');
   const [showThankYou, setShowThankYou] = useState(false);
   const currentDate = new Date();
 
@@ -142,8 +141,8 @@ const EmailForm = ({ progress, type }) => {
 
   const submitRequest = async (e) => {
     const scriptURL =
-      "https://script.google.com/macros/s/AKfycbxaHoLyCBcM-2IOtqBRMHAbtKRKcpRIVIzSsGIiEtarkEX_pWHIXnOU/exec";
-    const form = document.forms["short-demo-form"];
+      'https://script.google.com/macros/s/AKfycbxaHoLyCBcM-2IOtqBRMHAbtKRKcpRIVIzSsGIiEtarkEX_pWHIXnOU/exec';
+    const form = document.forms['short-demo-form'];
 
     e.preventDefault();
 
@@ -151,7 +150,7 @@ const EmailForm = ({ progress, type }) => {
 
     const res = await fetch(scriptURL, {
       body: new FormData(form),
-      method: "POST",
+      method: 'POST',
     });
     const result = await res.json();
   };
@@ -159,7 +158,7 @@ const EmailForm = ({ progress, type }) => {
   return (
     <EmailFormContainer
       id="email-form"
-      className={`${progress > 10 ? "show" : ""}${type || ""}`}
+      className={`${progress > 10 ? 'show' : ''}${type || ''}`}
     >
       <EnvelopeIcon stroke="#ffffff" />
       {showThankYou ? (
@@ -169,7 +168,11 @@ const EmailForm = ({ progress, type }) => {
       ) : (
         <>
           <div className="cta">Subscribe to get the latest articles first.</div>
-          <form name="short-demo-form" onSubmit={submitRequest}>
+          <form
+            name="short-demo-form"
+            onSubmit={submitRequest}
+            key="email-input-form"
+          >
             <input
               name="email"
               type="email"

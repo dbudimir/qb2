@@ -1,11 +1,9 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import styled from 'styled-components'
+'use client';
 
 // Utils
-import qbParser from '../../utils/qbParser'
+import { useEffect, useState } from 'react';
+import parseHtmlString from 'utils/parseHtmlString';
+import styled from 'styled-components';
 
 const HighlightContainer = styled.div`
   background: #ffffff;
@@ -108,45 +106,26 @@ const HighlightContainer = styled.div`
       }
     }
   }
-`
+`;
 
 const Highlight = ({ highlight }) => {
-  const { content } = highlight
-  const [renderHighlight, setRenderHighlight] = useState(null)
+  const { content } = highlight;
 
-  const generateBody = () => {
-    //
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(content.rendered, 'text/html')
-
-    const highlightContent = doc.querySelector('body')
-
-    const contentArray = Array.prototype.slice
-      .call(highlightContent.childNodes)
-      .filter((node) => node.nodeName !== '#text')
-
-    const lazyLoad = window.innerWidth < 768
-
-    // Runs this content through qbParser.
-    // qbParser arguments (content: node array, lazyLoad: should this conte be lazy loaded or not)
-    setRenderHighlight(qbParser(contentArray, lazyLoad))
-  }
+  const [pageContent, setPageContent] = useState(null);
 
   useEffect(() => {
-    !renderHighlight && generateBody()
-  }, [])
+    !pageContent && setPageContent(parseHtmlString(content.rendered));
+  }, []);
 
   return (
-    renderHighlight && (
-      <HighlightContainer>
-        <h3 className="highlight-header"> Highlight of the Week </h3>
-        {renderHighlight}
-        {/* <Link href="/highlights">
+    <HighlightContainer>
+      <h3 className="highlight-header"> Highlight of the Week </h3>
+      {pageContent}
+      {/* <Link href="/highlights">
             <a className="show-more">Show More →</a>
          </Link> */}
-      </HighlightContainer>
-    )
-  )
-}
+    </HighlightContainer>
+  );
+};
 
-export default Highlight
+export default Highlight;

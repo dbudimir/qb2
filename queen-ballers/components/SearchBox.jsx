@@ -1,5 +1,7 @@
+// 'use client'
+
 import { useRef, useEffect } from "react";
-import Router from "next/router";
+import { useRouter } from 'next/navigation'
 import styled from "styled-components";
 
 // Components
@@ -84,12 +86,12 @@ const SearchBoxContainer = styled.div`
 `;
 
 const SearchBox = ({ scroll, showSearch, setShowSearch }) => {
+  const router = useRouter()
   const searchBar = useRef(null);
+  
   //
   const runSearch = () => {
-    Router.push(`/search/${searchBar.current.value}`).then(() =>
-      window.scrollTo(0, 0)
-    );
+    router.push(`/search/${searchBar.current.value}`)
     searchBar.current.value = "";
     setShowSearch(!showSearch);
   };
@@ -109,7 +111,7 @@ const SearchBox = ({ scroll, showSearch, setShowSearch }) => {
           type="text"
           placeholder="Search..."
           ref={searchBar}
-          onKeyPress={(e) => e.key === "Enter" && showSearch && runSearch()}
+          onKeyUp={(e) => e.key === "Enter" && showSearch && runSearch()}
         />
         <span onClick={() => searchBar.current.value.length > 0 && runSearch()}>
           SEARCH

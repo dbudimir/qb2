@@ -18,9 +18,9 @@ const parseMetadata = htmlString => {
         {
           url: doc.querySelector('meta[property="og:image"]').content || '',
           width:
-            doc.querySelector('meta[property="og:image:width"]').content || 0,
+            doc.querySelector('meta[property="og:image:width"]')?.content || 0,
           height:
-            doc.querySelector('meta[property="og:image:height"]').content || 0
+            doc.querySelector('meta[property="og:image:height"]')?.content || 0
         }
       ],
       locale: doc.querySelector('meta[property="og:locale"]').content || '',

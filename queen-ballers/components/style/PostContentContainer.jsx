@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PostContent = styled.div`
+const PostContentContainer = styled.div`
   font-size: 20px;
   font-weight: 500;
   line-height: 1.75;
@@ -234,4 +234,4 @@ const PostContent = styled.div`
   }
 `;
 
-export default PostContent;
+export default PostContentContainer;

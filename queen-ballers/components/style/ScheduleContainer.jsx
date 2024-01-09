@@ -61,6 +61,10 @@ const SchedulePage = styled.div`
     }
   }
 
+  #schedule-content {
+    margin-top: 32px;
+  }
+
   .game-date {
     margin-bottom: 32px;
     text-decoration: none;

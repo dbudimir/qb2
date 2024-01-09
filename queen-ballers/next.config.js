@@ -3,15 +3,19 @@ module.exports = {
     styledComponents: true,
   },
   images: {
-    domains: [
-      'i2.wp.com',
-      'i1.wp.com',
-      'i0.wp.com',
-      'secure.gravatar.com',
-      'queenballers.club',
-      'queenballers.wpcomstaging.com',
-      'pbs.twimg.com',
-      'upload.wikimedia.org',
+    remotePatterns: [
+      { protocol: 'https', hostname: 'i2.wp.com', pathname: '**' },
+      { protocol: 'https', hostname: 'i1.wp.com', pathname: '**' },
+      { protocol: 'https', hostname: 'i0.wp.com', pathname: '**' },
+      { protocol: 'https', hostname: 'secure.gravatar.com', pathname: '**' },
+      { protocol: 'https', hostname: 'queenballers.club', pathname: '**' },
+      {
+        protocol: 'https',
+        hostname: 'queenballers.wpcomstaging.com',
+        pathname: '**',
+      },
+      { protocol: 'https', hostname: 'pbs.twimg.com', pathname: '**' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org', pathname: '**' },
     ],
   },
   async redirects() {

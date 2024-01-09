@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { getReturn } from "../../utils/getReturn";
-import { cleanPosts } from "../../utils/cleanText";
-import buildQuery from "../../utils/buildQuery";
-import styled from "styled-components";
+import { useState } from 'react';
+import { getReturn } from '../../utils/getReturn';
+import { cleanPosts } from '../../utils/cleanText';
+import buildQuery from '../../utils/buildQuery';
+import styled from 'styled-components';
 
 // Components
-import Post from "./Post";
-import Highlight from "./Highlight";
-import Popular from "./Popular";
+import Post from './Post';
+import Highlight from './Highlight';
+import Popular from './Popular';
 
 const LatestPostsContainer = styled.div`
   h3 {
@@ -171,19 +171,19 @@ const LatestPosts = ({ latestPosts, homePage, hideHeader }) => {
     setShowLoader(true);
     const morePostsRes = await getReturn(
       buildQuery({
-        objectType: "posts",
+        objectType: 'posts',
         fields: [
-          "link",
-          "title",
-          "date",
-          "excerpt",
-          "jetpack_featured_media_url",
+          'link',
+          'title',
+          'date',
+          'excerpt',
+          'jetpack_featured_media_url',
         ],
         perPage: 50,
         page: 2,
       })
     );
-    const latestPosts = _.orderBy(morePostsRes, (post) => post.date, ["desc"]);
+    const latestPosts = _.orderBy(morePostsRes, (post) => post.date, ['desc']);
     const cleanLatestPosts = await cleanPosts(latestPosts);
 
     setMorePosts(cleanLatestPosts);
@@ -193,7 +193,7 @@ const LatestPosts = ({ latestPosts, homePage, hideHeader }) => {
   return (
     <LatestPostsContainer className="latest-posts-container">
       {!hideHeader && <h3>Latest Posts</h3>}
-      <div className={`posts ${homePage ? "home-page" : undefined}`}>
+      <div className={`posts ${homePage ? 'home-page' : undefined}`}>
         {
           // List of posts
           [...latestPosts, ...morePosts].map((post, index) => {
@@ -204,9 +204,9 @@ const LatestPosts = ({ latestPosts, homePage, hideHeader }) => {
             const width = first ? 720 : featured ? 800 : 490;
             const height = first ? 400 : featured ? 305 : 305;
 
-            return post.type === "popular" ? (
+            return post.type === 'popular' ? (
               <Popular key={`popular${index}`} homePage={homePage} />
-            ) : post.type === "highlights" ? (
+            ) : post.type === 'highlights' ? (
               <Highlight key={`highlight${index}`} highlight={post} />
             ) : (
               <Post

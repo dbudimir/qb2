@@ -1,13 +1,13 @@
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import styled from "styled-components";
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import styled from 'styled-components';
 
 // Data
-import teams from "../../public/static/teams.json";
+import teams from '../../public/static/teams.json';
 
 // Components
-import ChevronDown from "../icons/CarrotDownIcon";
+import ChevronDown from '../icons/CarrotDownIcon';
 
 const DropdownContainer = styled.div`
   padding: 6px;
@@ -176,12 +176,12 @@ const DropdownContainer = styled.div`
 `;
 
 const links = [
-  { text: "Free Agency", href: "/wnba-free-agency" },
-  { text: "Draft", href: "/wnba-draft" },
-  { text: "Schedule", href: "/schedule" },
-  { text: "All-Star", href: "/wnba-all-star-game" },
-  { text: "Playoffs", href: "/wnba-playoffs" },
-  { text: "Finals", href: "/wnba-finals" },
+  { text: 'Free Agency', href: '/wnba-free-agency' },
+  { text: 'Draft', href: '/wnba-draft' },
+  { text: 'Schedule', href: '/schedule' },
+  { text: 'All-Star', href: '/wnba-all-star-game' },
+  { text: 'Playoffs', href: '/wnba-playoffs' },
+  { text: 'Finals', href: '/wnba-finals' },
 ];
 
 const WNBADropdown = ({ show }) => {
@@ -191,7 +191,7 @@ const WNBADropdown = ({ show }) => {
   );
 
   return (
-    <DropdownContainer className={`dropdown-window ${show && "show"}`}>
+    <DropdownContainer className={`dropdown-window ${show && 'show'}`}>
       <div className="links">
         {links.map((link, i) => {
           return (
@@ -206,7 +206,7 @@ const WNBADropdown = ({ show }) => {
           Show Teams <ChevronDown stroke="#393939" />
         </span>
       </div>
-      <div className={`teams ${showTeams && "show-on-mobile"}`}>
+      <div className={`teams ${showTeams && 'show-on-mobile'}`}>
         {showTeams && (
           <span className="show-teams" onClick={() => setShowTeams(false)}>
             Hide Teams <ChevronDown stroke="#393939" />

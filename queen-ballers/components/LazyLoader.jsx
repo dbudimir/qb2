@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useRef, useEffect, useState } from "react";
-import styled from "styled-components";
-import Head from "next/head";
+import Script from 'next/script';
+import { useRef, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const LazyLoaderContainer = styled.figure`
   width: 100%;
@@ -56,7 +56,6 @@ const LazyLoaderContainer = styled.figure`
 `;
 
 const LazyLoader = ({ index, classes, type, children }) => {
-  //
   const contentRef = useRef(null);
   const [loadContent, setLoadContent] = useState(false);
 
@@ -70,27 +69,21 @@ const LazyLoader = ({ index, classes, type, children }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", loadElm, ["once"]);
-    return () => window.removeEventListener("scroll", loadElm, ["once"]);
+    window.addEventListener('scroll', loadElm, ['once']);
+    return () => window.removeEventListener('scroll', loadElm, ['once']);
   }, []);
 
   return (
     <>
-      <Head>
-        {type === "tiktok" && loadContent && (
-          <script src="https://www.tiktok.com/embed.js" defer />
-        )}
-        {type === "twitter" && loadContent && (
-          <script
-            async
-            src="https://platform.twitter.com/widgets.js"
-            charSet="utf-8"
-          />
-        )}
-        {type === "pinterest" && loadContent && (
-          <script async defer src="https://assets.pinterest.com/js/pinit.js" />
-        )}
-      </Head>
+      {type === 'tiktok' && loadContent && (
+        <Script src="https://www.tiktok.com/embed.js" defer />
+      )}
+      {type === 'twitter' && loadContent && (
+        <Script async src="https://platform.twitter.com/widgets.js" />
+      )}
+      {type === 'pinterest' && loadContent && (
+        <Script async defer src="https://assets.pinterest.com/js/pinit.js" />
+      )}
       <LazyLoaderContainer
         className={classes}
         id={`content${index}`}
