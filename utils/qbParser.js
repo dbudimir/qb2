@@ -56,7 +56,6 @@ const qbParser = ({ nodeList }, depth) => {
               </div>
             );
           case 'PRE':
-            console.log('parsed', parse(innerHTML));
             const pinterestEmbed = parse(innerHTML).props.children;
 
             return (
@@ -68,6 +67,7 @@ const qbParser = ({ nodeList }, depth) => {
             if (id === 'schedule-content') {
               return <Schedule key="wnba-schedule-outer" />;
             }
+
             // If image
             if (classList.length > 0 && classList.contains('wp-block-image')) {
               //
@@ -154,9 +154,8 @@ const qbParser = ({ nodeList }, depth) => {
               <></>
             );
           default:
+            // Need to redo this logic
             if (!childNodes.length) {
-              // const nodes = Array.prototype.slice.call(childNodes[0]?.children);
-
               if (id && id !== 'season-info') {
                 return (
                   <div key={`div${i}`} id={id}>
@@ -167,9 +166,10 @@ const qbParser = ({ nodeList }, depth) => {
                 return <div key={`div${i}`} id="season-info" />;
               }
             } else {
+              const nodes = Array.prototype.slice.call(childNodes[0].children);
               return (
                 <div key={`div${i}`} id={id}>
-                  {parse(outerHTML)}
+                  {qbParser({ nodeList: nodes }, depth + 1)}
                 </div>
               );
             }

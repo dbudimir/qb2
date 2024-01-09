@@ -36,8 +36,6 @@ const getData = async ({ params }) => {
   const latestPosts = _.orderBy(posts, (post) => post.date, ['desc']);
   const cleanLatestPosts = await cleanPosts(latestPosts);
 
-  console.log('current tag', currentTag);
-
   return {
     tag: currentTag,
     posts: cleanLatestPosts,
@@ -66,9 +64,6 @@ export async function generateMetadata({ params }) {
 const TagPage = async ({ params }) => {
   const { tag, posts } = await getData({ params });
 
-  console.log('tag', tag);
-  console.log('posts', posts);
-
   return (
     <>
       <div className="page-container content">
@@ -82,47 +77,5 @@ const TagPage = async ({ params }) => {
     </>
   );
 };
-
-// export async function getServerSideProps({ params }) {
-//   //
-//   const { category, tag } = params;
-
-//   // Function accepts the tag url slug
-//   const currentTag = await getTag(tag);
-
-//   const posts = await getReturn(
-//     buildQuery({
-//       objectType: 'posts',
-//       filter: 'tags',
-//       filterKey: currentTag.id,
-//       fields: [
-//         'link',
-//         'title',
-//         'date',
-//         'excerpt',
-//         'yoast_head',
-//         'jetpack_featured_media_url',
-//       ],
-//       perPage: 100,
-//     })
-//   );
-
-//   const latestPosts = _.orderBy(posts, (post) => post.date, ['desc']);
-//   const cleanLatestPosts = await cleanPosts(latestPosts);
-
-//   const head = await cleanHead(
-//     currentTag.yoast_head,
-//     `${category}/tag/${tag}`,
-//     'https://queenballers.club/static/images/qb-background.png'
-//   ).replace(
-//     /<meta name="robots".*>/,
-//     `<meta name="robots" content="noindex">
-// 	`
-//   );
-
-//   return {
-//     props: { head, tag: currentTag, posts: cleanLatestPosts },
-//   };
-// }
 
 export default TagPage;

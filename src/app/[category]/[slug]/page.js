@@ -14,12 +14,10 @@ import PrevNextPosts from '/components/posts/PrevNextPosts';
 const getData = async ({ params }) => {
   const { slug, category } = params;
 
-  console.log('slug', slug);
-
   // Get stuff
   const [blogPost] = await getPost(slug);
 
-  console.log('blogpost', blogPost);
+  console.log('blogPost url', `${process.env.WP_API}/users/${blogPost.author}`);
 
   const [author, title, content] = await Promise.all([
     getReturn(`${process.env.WP_API}/users/${blogPost.author}`),

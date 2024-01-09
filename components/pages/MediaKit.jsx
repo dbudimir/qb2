@@ -73,6 +73,7 @@ const MediaKitContainer = styled.div`
       justify-content: flex-start;
       align-items: center;
       width: 100%;
+      gap: 6px;
 
       h2 {
         width: 100%;
