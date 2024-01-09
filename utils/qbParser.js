@@ -166,11 +166,16 @@ const qbParser = ({ nodeList }, depth) => {
                 return <div key={`div${i}`} id="season-info" />;
               }
             } else {
-              const nodes = Array.prototype.slice.call(childNodes[0].children);
-              return (
+              const nodes =
+                childNodes[0].children &&
+                Array.prototype.slice.call(childNodes[0].children);
+
+              return nodes ? (
                 <div key={`div${i}`} id={id}>
                   {qbParser({ nodeList: nodes }, depth + 1)}
                 </div>
+              ) : (
+                <></>
               );
             }
         }
