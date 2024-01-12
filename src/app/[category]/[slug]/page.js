@@ -17,8 +17,6 @@ const getData = async ({ params }) => {
   // Get stuff
   const [blogPost] = await getPost(slug);
 
-  console.log('blogPost url', `${process.env.WP_API}/users/${blogPost.author}`);
-
   const [author, title, content] = await Promise.all([
     getReturn(`${process.env.WP_API}/users/${blogPost.author}`),
     cleanText(blogPost.title.rendered),

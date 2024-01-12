@@ -22,8 +22,6 @@ export async function POST(req) {
 
   const adminSettings = await req.json();
 
-  console.log('admin settings request', adminSettings);
-
   try {
     Admin.findOneAndUpdate(
       { _id: '60a9cb629e15d3bbe6a033f8' },

@@ -14,12 +14,22 @@ import BannerAd from '../../components/ads/BannerAd';
 import Footer from '../../components/Footer';
 
 async function getData() {
+  // try {
+  //   const adminSettings = await fetch(
+  //     `${process.env.DOMAIN}/api/admin-settings`
+  //   ).then((res) => res.json());
+
+  //   return { ...adminSettings.adminSettings[0] };
+  // } catch (error) {
+  //   throw new Error('Failed to fetch data');
+  // }
+
   try {
     const adminSettings = await fetch(
-      `${process.env.DOMAIN}/api/admin-settings`
+      `https://queenballers.club/api/admin`
     ).then((res) => res.json());
 
-    return { ...adminSettings.adminSettings[0] };
+    return adminSettings;
   } catch (error) {
     throw new Error('Failed to fetch data');
   }
@@ -30,13 +40,13 @@ export const metadata = {
     icon: [
       {
         media: '(prefers-color-scheme: light)',
-        url: '/images/queen-ballers-icon.png',
-        href: '/images/queen-ballers-icon.png',
+        url: '/static/queen-ballers-icon.png',
+        href: '/static/queen-ballers-icon.png',
       },
       {
         media: '(prefers-color-scheme: dark)',
-        url: '/images/queen-ballers-icon-dm.png',
-        href: '/images/queen-ballers-icon-dm.png',
+        url: '/static/queen-ballers-icon-dm.png',
+        href: '/static/queen-ballers-icon-dm.png',
       },
     ],
   },
