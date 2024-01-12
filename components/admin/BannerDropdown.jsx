@@ -1,14 +1,4 @@
-import axios from 'axios'
-
-const BannerDropdown = ({ settings, setSettings }) => {
-  const updateBanner = async () => {
-    try {
-      await axios.post('/api/admin', settings).then((response) => response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
+const BannerDropdown = ({ settings, setSettings, updateAdminSettings }) => {
   return (
     <div className="admin-option">
       <span>Banner Text</span>
@@ -16,20 +6,24 @@ const BannerDropdown = ({ settings, setSettings }) => {
         type="text"
         name="bannerText"
         value={settings.bannerText}
-        onChange={(e) => setSettings({ ...settings, bannerText: e.target.value })}
+        onChange={(e) =>
+          setSettings({ ...settings, bannerText: e.target.value })
+        }
       />
       <span>Banner URL</span>
       <input
         type="text"
         name="bannerUrl"
         value={settings.bannerUrl}
-        onChange={(e) => setSettings({ ...settings, bannerUrl: e.target.value })}
+        onChange={(e) =>
+          setSettings({ ...settings, bannerUrl: e.target.value })
+        }
       />
-      <span className="button" onClick={(e) => updateBanner()}>
+      <span className="button" onClick={(e) => updateAdminSettings()}>
         Update Banner
       </span>
     </div>
-  )
-}
+  );
+};
 
-export default BannerDropdown
+export default BannerDropdown;

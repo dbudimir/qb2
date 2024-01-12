@@ -44,6 +44,7 @@ async function getData() {
       .pop()
       .split('" />')[0]
   );
+  const title = freeAgencyPage.title.rendered;
   const content = freeAgencyPage.content.rendered;
 
   // Sort posts
@@ -51,6 +52,7 @@ async function getData() {
   const cleanLatestPosts = await cleanPosts(latestPosts);
 
   return {
+    title,
     content,
     head,
     headlines,
@@ -73,7 +75,7 @@ export async function generateMetadata() {
 }
 
 export default async function WNBAFreeAgencyPage({}) {
-  const data = await getData();
+  const { title, content, posts } = await getData();
 
-  return <WNBAFreeAgency content={data.content} latestPosts={data.posts} />;
+  return <WNBAFreeAgency content={content} title={title} latestPosts={posts} />;
 }

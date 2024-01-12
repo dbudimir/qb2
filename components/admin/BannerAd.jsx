@@ -1,14 +1,4 @@
-import axios from 'axios'
-
-const BannerDropdown = ({ settings, setSettings }) => {
-  const updateBannerAd = async () => {
-    try {
-      await axios.post('/api/admin', settings).then((response) => response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
+const BannerDropdown = ({ settings, setSettings, updateAdminSettings }) => {
   return (
     <div className="admin-option">
       <div className="checkbox-container">
@@ -19,7 +9,10 @@ const BannerDropdown = ({ settings, setSettings }) => {
           onChange={(e) =>
             setSettings({
               ...settings,
-              bannerAd: { ...settings.bannerAd, bannerAdVisible: e.target.checked },
+              bannerAd: {
+                ...settings.bannerAd,
+                bannerAdVisible: e.target.checked,
+              },
             })
           }
         />
@@ -33,7 +26,10 @@ const BannerDropdown = ({ settings, setSettings }) => {
         onChange={(e) =>
           setSettings({
             ...settings,
-            bannerAd: { ...settings.bannerAd, bannerAdImageUrl: e.target.value },
+            bannerAd: {
+              ...settings.bannerAd,
+              bannerAdImageUrl: e.target.value,
+            },
           })
         }
       />
@@ -49,11 +45,11 @@ const BannerDropdown = ({ settings, setSettings }) => {
           })
         }
       />
-      <span className="button" onClick={(e) => updateBannerAd()}>
+      <span className="button" onClick={(e) => updateAdminSettings()}>
         Update Banner Ad
       </span>
     </div>
-  )
-}
+  );
+};
 
-export default BannerDropdown
+export default BannerDropdown;

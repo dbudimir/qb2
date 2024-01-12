@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 
 // Components
@@ -131,13 +132,11 @@ const EmailFormContainer = styled.div`
 `;
 
 const EmailForm = ({ progress, type }) => {
-  const [pagePath, setPagePath] = useState('');
   const [showThankYou, setShowThankYou] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [email, setEmail] = useState('');
+  const pagePath = usePathname();
   const currentDate = new Date();
-
-  useEffect(() => {
-    window && setPagePath(window.location.pathname);
-  }, []);
 
   const submitRequest = async (e) => {
     const scriptURL =
@@ -146,13 +145,16 @@ const EmailForm = ({ progress, type }) => {
 
     e.preventDefault();
 
-    setShowThankYou(true);
-
-    const res = await fetch(scriptURL, {
-      body: new FormData(form),
-      method: 'POST',
-    });
-    const result = await res.json();
+    try {
+      const res = await fetch(scriptURL, {
+        body: new FormData(form),
+        method: 'POST',
+      });
+      const result = await res.json();
+      setShowThankYou(true);
+    } catch (error) {
+      setShowError(true);
+    }
   };
 
   return (
@@ -165,6 +167,8 @@ const EmailForm = ({ progress, type }) => {
         <div>
           Nice! <br /> You&apos;re on the roster.
         </div>
+      ) : showError ? (
+        <div>Something went wrong, please try again.</div>
       ) : (
         <>
           <div className="cta">Subscribe to get the latest articles first.</div>
@@ -178,6 +182,8 @@ const EmailForm = ({ progress, type }) => {
               type="email"
               placeholder="Email"
               autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <input name="slug" type="hidden" value={pagePath} required />

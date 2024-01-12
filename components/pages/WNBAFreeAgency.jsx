@@ -12,7 +12,7 @@ import LatestPosts from '/components/postgrid/LatestPosts';
 import PostContentContainer from '/components/style/PostContentContainer';
 import StandardPageContainer from '/components/style/StandardPageContainer';
 
-const WNBAFreeAgency = ({ content, latestPosts }) => {
+const WNBAFreeAgency = ({ content, title, latestPosts }) => {
   const [pageContent, setPageContent] = useState(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const WNBAFreeAgency = ({ content, latestPosts }) => {
 
   return (
     <StandardPageContainer className="page-container">
-      <HeaderText titleContent={<h1>2022 WNBA Free Agency</h1>} />
+      <HeaderText titleContent={<h1>{title}</h1>} />
       <div className="content">
         <div className="col-left">
           <h4> WNBA Free Agency Overview</h4>

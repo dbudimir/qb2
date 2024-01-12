@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-// import useSWR from 'swr'
-import { useContext } from "react";
-import styled from "styled-components";
-import { AppContext } from "src/app/context";
+import Link from 'next/link';
+import Image from 'next/image';
+import { useContext } from 'react';
+import { AppContext } from 'src/app/context';
+import styled from 'styled-components';
 
 const PopularContainer = styled.div`
   background: #ffffff;

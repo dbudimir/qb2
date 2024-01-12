@@ -1,36 +1,52 @@
 // Global styles
-import '../../public/static/style.scss'
-import { Inter } from 'next/font/google'
-const inter = Inter({ subsets: ['latin'] })
+import '../../public/static/style.scss';
+import { Inter } from 'next/font/google';
+const inter = Inter({ subsets: ['latin'] });
 
 // Utils
-import { GoogleTagManager } from '@next/third-parties/google'
-import StyledComponentsRegistry from '../../lib/registry'
-import AppContext from './context'
+import { GoogleTagManager } from '@next/third-parties/google';
+import StyledComponentsRegistry from '../../lib/registry';
+import AppContext from './context';
 // Components
-import NavAd from '../../components/ads/NavAd'
-import Nav from '../../components/nav/Nav'
-import BannerAd from '../../components/ads/BannerAd'
-import Footer from '../../components/Footer'
+import NavAd from '../../components/ads/NavAd';
+import Nav from '../../components/nav/Nav';
+import BannerAd from '../../components/ads/BannerAd';
+import Footer from '../../components/Footer';
 
-async function getData () {
-  const res = await fetch('https://queenballers.club/api/admin')
+async function getData() {
+  try {
+    const adminSettings = await fetch(
+      `${process.env.DOMAIN}/api/admin-settings`
+    ).then((res) => res.json());
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
+    return { ...adminSettings.adminSettings[0] };
+  } catch (error) {
+    throw new Error('Failed to fetch data');
   }
-
-  return res.json()
 }
 
-export default async function RootLayout ({ children }) {
-  const adminSettings = await getData()
+export const metadata = {
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/images/queen-ballers-icon.png',
+        href: '/images/queen-ballers-icon.png',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/images/queen-ballers-icon-dm.png',
+        href: '/images/queen-ballers-icon-dm.png',
+      },
+    ],
+  },
+};
 
-  const viewOptions = {}
+export default async function RootLayout({ children }) {
+  const adminSettings = await getData();
 
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={inter.className}>
         <AppContext adminSettings={adminSettings}>
           <StyledComponentsRegistry>
@@ -39,7 +55,7 @@ export default async function RootLayout ({ children }) {
               bannerText={adminSettings.bannerText}
             />
 
-            <Nav viewOptions={viewOptions || {}} />
+            <Nav />
 
             <BannerAd bannerAd={adminSettings.bannerAd} />
             {children}
@@ -48,7 +64,7 @@ export default async function RootLayout ({ children }) {
         </AppContext>
       </body>
 
-      <GoogleTagManager gtmId='GTM-MNGJZC9' />
+      <GoogleTagManager gtmId="GTM-MNGJZC9" />
     </html>
-  )
+  );
 }

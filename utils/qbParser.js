@@ -34,10 +34,8 @@ const qbParser = ({ nodeList }, depth) => {
           case 'BLOCKQUOTE':
             return (
               <blockquote key={`block${i}`}>
-                <hr />
                 <QuoteIcon />
                 {parse(innerHTML)}
-                <hr />
               </blockquote>
             );
           case 'UL':

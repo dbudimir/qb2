@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import axios from 'axios'
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const PopularPostsContainer = styled.div`
   display: flex;
@@ -11,18 +9,10 @@ const PopularPostsContainer = styled.div`
     display: flex;
     gap: 12px;
   }
-`
+`;
 
-const PopularPosts = ({ settings, setSettings }) => {
-  const posts = ['post1', 'post2', 'post3', 'post4']
-
-  const updatePopularPosts = async () => {
-    try {
-      await axios.post('/api/admin', settings).then((response) => response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+const PopularPosts = ({ settings, setSettings, updateAdminSettings }) => {
+  const posts = ['post1', 'post2', 'post3', 'post4'];
 
   const updatePosts = (postNumber, field, value) => {
     setSettings({
@@ -31,8 +21,8 @@ const PopularPosts = ({ settings, setSettings }) => {
         ...settings?.topPosts,
         [postNumber]: { ...settings?.topPosts?.[postNumber], [field]: value },
       },
-    })
-  }
+    });
+  };
 
   return (
     <PopularPostsContainer className="admin-option">
@@ -61,11 +51,11 @@ const PopularPosts = ({ settings, setSettings }) => {
         </div>
       ))}
 
-      <span className="button" onClick={(e) => updatePopularPosts()}>
+      <span className="button" onClick={(e) => updateAdminSettings()}>
         Update Popular Reads
       </span>
     </PopularPostsContainer>
-  )
-}
+  );
+};
 
-export default PopularPosts
+export default PopularPosts;

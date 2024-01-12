@@ -165,17 +165,17 @@ const NavLower = styled.div`
   }
 `;
 
-const Nav = ({ viewOptions }) => {
+const Nav = ({}) => {
   const pathname = usePathname();
   const isBlogPost =
     pathname.includes('/basketball/') && !pathname.includes('/tag/');
 
-  const {
-    progressBar = isBlogPost,
-    emailForm = isBlogPost,
-    shareButtons = isBlogPost,
-    donateBar = true,
-  } = viewOptions;
+  // View settings
+  const progressBar = isBlogPost;
+  const emailForm = isBlogPost;
+  const shareButtons = isBlogPost;
+  const donateBar = true;
+
   //
   const upperNavRef = useRef(null);
   const [showMenu, setShowMenu] = useState(false);
@@ -252,7 +252,7 @@ const Nav = ({ viewOptions }) => {
           />
         </div>
 
-        {viewOptions && !showSearch && (
+        {!showSearch && (
           <>
             {progressBar && (
               <div id="progress-bar" style={{ width: `${progress}%` }} />
