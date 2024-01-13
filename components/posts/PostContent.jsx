@@ -1,7 +1,7 @@
 'use client';
 
 // Utils
-import parseHtmlString from 'utils/parseHtmlString';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 // Components
@@ -11,17 +11,32 @@ import Popular from '/components/postgrid/Popular';
 import PostContentContainer from '/components/style/PostContentContainer';
 
 const PostContent = ({ content }) => {
+  const [splicedContent, setSplicedContent] = useState(null);
+
+  useEffect(() => {
+    // Todo: Improve this so popular post can appear in different places
+    if (!splicedContent) {
+      const parsedArray1 = content.slice(0, 10);
+      const parsedArray2 = content.slice(10);
+
+      const splicedArray = [
+        ...parsedArray1,
+        <Popular key="popular-posts" />,
+        ...parsedArray2,
+      ];
+
+      setSplicedContent(splicedArray);
+    }
+  }, []);
+
   // TODO: See if we can do this on the server side
   const generateBody = () => {
-    const parsedContentArray = parseHtmlString(content);
-    parsedContentArray.splice(10, 0, <Popular key="popular-posts" />);
-
     return parsedContentArray;
   };
 
   return (
     <PostContentContainer className="content">
-      {generateBody()}
+      {splicedContent || content}
     </PostContentContainer>
   );
 };

@@ -1,9 +1,11 @@
-'use client';
-
+import { JSDOM } from 'jsdom';
 import { parse } from 'node-html-parser';
 import qbParser from '/utils/qbParser';
 
-const parseHtmlString = (content) => {
+const parseHtmlOnServer = (content) => {
+  const dom = new JSDOM(content);
+  const doc = dom.window.document;
+
   const pageContent = parse(content);
 
   const filteredPageContent = pageContent.childNodes.filter(
@@ -11,7 +13,7 @@ const parseHtmlString = (content) => {
   );
   const contentArray = filteredPageContent.map((node) => {
     // Rebuild the object so that it has all the required attributes
-    const elm = document.createElement(node.rawTagName);
+    const elm = doc.createElement(node.rawTagName);
     const classList = Array.from(node.classList._set);
     elm.innerHTML = node.innerHTML;
     elm.rawAttrs = node.rawAttrs;
@@ -26,4 +28,4 @@ const parseHtmlString = (content) => {
   return parsedContentArray;
 };
 
-export default parseHtmlString;
+module.exports = { parseHtmlOnServer };

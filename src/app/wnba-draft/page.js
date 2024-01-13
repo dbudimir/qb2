@@ -3,6 +3,7 @@ import { cleanText, cleanHead, cleanPosts } from '/utils/cleanText';
 import { getReturn, getPage } from '/utils/getReturn';
 
 import buildQuery from '/utils/buildQuery';
+import { parseHtmlOnServer } from '/utils/parseHtmlOnServer';
 import { parseMetadata } from '/utils/parseMetadata';
 
 import WNBADraft from '/components/pages/WNBADraft';
@@ -61,7 +62,7 @@ async function getData() {
       .split('" />')[0]
   );
   const title = draftPage.title.rendered;
-  const content = draftPage.content.rendered;
+  const content = parseHtmlOnServer(draftPage.content.rendered);
 
   // Sort posts
   const latestPosts = _.orderBy(posts, (post) => post.date, ['desc']);

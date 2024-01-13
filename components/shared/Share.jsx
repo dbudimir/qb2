@@ -85,12 +85,14 @@ const Share = ({ progress }) => {
   return (
     <ShareContainer id="share-buttons" className={progress > 10 ? 'show' : ''}>
       <FacebookShareButton
+        aria-label="Facebook share button"
         url={`https://queenballers.club${pagePath}`}
         quote={metaDesc}
       >
         <FacebookIcon stroke="#ffffff" wh="28" />
       </FacebookShareButton>
       <TwitterShareButton
+        aria-label="X share button"
         url={`https://queenballers.club${pagePath}`}
         title={`${metaDesc} @queenballers`}
       >

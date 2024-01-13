@@ -2,7 +2,7 @@
 
 // Utils
 import { useEffect, useState } from 'react';
-import parseHtmlString from 'utils/parseHtmlString';
+import { parseHtmlOnClient } from '/utils/parseHtmlOnClient';
 import styled from 'styled-components';
 
 const HighlightContainer = styled.div`
@@ -114,7 +114,7 @@ const Highlight = ({ highlight }) => {
   const [pageContent, setPageContent] = useState(null);
 
   useEffect(() => {
-    !pageContent && setPageContent(parseHtmlString(content.rendered));
+    !pageContent && setPageContent(parseHtmlOnClient(content.rendered));
   }, []);
 
   return (

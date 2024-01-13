@@ -1,10 +1,7 @@
 'use client';
 
 // Utils
-import { useEffect, useState } from 'react';
-import parseHtmlString from 'utils/parseHtmlString';
 import dayjs from 'dayjs';
-
 const year = dayjs().year();
 
 // Components
@@ -14,13 +11,7 @@ import TagsRow from '/components/shared/TagsRow';
 // Styles // import order matters
 import ScheduleContainer from '/components/style/ScheduleContainer';
 
-const WNBASchedule = ({ tags, content, latestPosts }) => {
-  const [pageContent, setPageContent] = useState(null);
-
-  useEffect(() => {
-    !pageContent && setPageContent(parseHtmlString(content));
-  }, []);
-
+const WNBASchedule = ({ tags, content }) => {
   const scrollToSection = (elmId) => {
     window.scrollTo({
       behavior: 'smooth',
@@ -43,7 +34,7 @@ const WNBASchedule = ({ tags, content, latestPosts }) => {
         ))}
       />
       {/* Schedule generated here 👇 */}
-      {pageContent}
+      {content}
     </ScheduleContainer>
   );
 };

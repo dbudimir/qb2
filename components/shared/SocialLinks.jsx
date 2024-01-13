@@ -11,14 +11,14 @@ import PinterestIcon from '/components/icons/PinterestIcon';
 const SocialLinksContainer = styled.div`
   display: flex;
   gap: 14px;
+  align-items: center;
 
   a {
     margin-bottom: unset;
     display: flex;
-
-    svg {
-      height: 24px;
-    }
+    min-width: 24px;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -26,12 +26,12 @@ const links = [
   {
     alt: 'Instagram',
     href: 'https://www.instagram.com/queenballersclub/',
-    icon: <InstagramIcon stroke="#ffffff" wh="22" />,
+    icon: <InstagramIcon stroke="#ffffff" wh="20" />,
   },
   {
     alt: 'Twitter',
     href: 'https://twitter.com/queenballers',
-    icon: <TwitterIcon stroke="#ffffff" wh="18" />,
+    icon: <TwitterIcon stroke="#ffffff" wh="16" />,
   },
   {
     alt: 'Facebook',
@@ -59,6 +59,7 @@ const SocialLinks = () => (
   <SocialLinksContainer className="social-links">
     {links.map(({ alt, href, icon }, i) => (
       <a
+        aria-label={`${alt} social link`}
         key={`link${i}`}
         href={href}
         alt={alt}

@@ -3,6 +3,7 @@ import { cleanText, cleanHead, cleanPosts } from '/utils/cleanText';
 import { getReturn, getPage } from '/utils/getReturn';
 
 import buildQuery from '/utils/buildQuery';
+import { parseHtmlOnServer } from '/utils/parseHtmlOnServer';
 import { parseMetadata } from '/utils/parseMetadata';
 
 import WNBAPlayoffs from '/components/pages/WNBAPlayoffs';
@@ -46,7 +47,7 @@ async function getData() {
   );
 
   const title = playoffsPage.title.rendered.replace('&#8217;', "'");
-  const content = playoffsPage.content.rendered;
+  const content = parseHtmlOnServer(playoffsPage.content.rendered);
 
   // Sort posts
   const latestPosts = _.orderBy(posts, (post) => post.date, ['desc']);

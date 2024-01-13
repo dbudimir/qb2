@@ -1,8 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import parseHtmlString from 'utils/parseHtmlString';
 
 // Components
 import PostContent from '/components/posts/PostContent';
@@ -80,12 +78,7 @@ const ShopContainer = styled.div`
   }
 `;
 
-export default function SportsJobs({ content, title }) {
-  const [pageContent, setPageContent] = useState(null);
-
-  useEffect(() => {
-    !pageContent && setPageContent(parseHtmlString(content));
-  }, []);
+export default function Shop({ content, title }) {
   //
   return (
     <ShopContainer className="page-container">

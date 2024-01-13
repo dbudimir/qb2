@@ -1,9 +1,5 @@
 'use client';
 
-// Utils
-import { useEffect, useState } from 'react';
-import parseHtmlString from 'utils/parseHtmlString';
-
 // Components
 import HeaderText from '/components/shared/HeaderText';
 import TagsRow from '/components/shared/TagsRow';
@@ -14,12 +10,6 @@ import PostContentContainer from '/components/style/PostContentContainer';
 import StandardPageContainer from '/components/style/StandardPageContainer';
 
 const WNBADraft = ({ title, tags, content, latestPosts }) => {
-  const [pageContent, setPageContent] = useState(null);
-
-  useEffect(() => {
-    !pageContent && setPageContent(parseHtmlString(content));
-  }, []);
-
   const scrollToSection = (elmId) =>
     window.scrollTo({
       behavior: 'smooth',
@@ -43,7 +33,7 @@ const WNBADraft = ({ title, tags, content, latestPosts }) => {
       />
       <div className="content">
         <div className="col-left">
-          <PostContentContainer>{pageContent}</PostContentContainer>
+          <PostContentContainer>{content}</PostContentContainer>
         </div>
         <div className="col-right">
           <h4>Latest Posts</h4>

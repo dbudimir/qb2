@@ -1,4 +1,5 @@
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   compiler: {
     styledComponents: true,
   },
@@ -9,11 +10,7 @@ module.exports = {
       { protocol: 'https', hostname: 'i0.wp.com', pathname: '**' },
       { protocol: 'https', hostname: 'secure.gravatar.com', pathname: '**' },
       { protocol: 'https', hostname: 'queenballers.club', pathname: '**' },
-      {
-        protocol: 'https',
-        hostname: 'queenballers.wpcomstaging.com',
-        pathname: '**',
-      },
+      { protocol: 'https', hostname: 'queenballers.wpcomstaging.com', pathname: '**', }, // prettier-ignore
       { protocol: 'https', hostname: 'pbs.twimg.com', pathname: '**' },
       { protocol: 'https', hostname: 'upload.wikimedia.org', pathname: '**' },
     ],
@@ -50,11 +47,21 @@ module.exports = {
         destination: '/wnba-finals',
         permanent: true,
       },
-      { source: '/basketball/tag/wnba-free-agency', destination: '/wnba-free-agency', permanent: true }, // prettier-ignore
-      { source: '/basketball/chicago-sky-best-players', destination: '/basketball/tag/chicago-sky', permanent: true, }, // prettier-ignore
+      {
+        source: '/basketball/tag/wnba-free-agency',
+        destination: '/wnba-free-agency',
+        permanent: true,
+      },
+      {
+        source: '/basketball/chicago-sky-best-players',
+        destination: '/basketball/tag/chicago-sky',
+        permanent: true,
+      },
     ];
   },
 };
+
+module.exports = nextConfig;
 
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
 //   enabled: process.env.ANALYZE === 'true',

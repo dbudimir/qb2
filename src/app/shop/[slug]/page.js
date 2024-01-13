@@ -1,6 +1,7 @@
 // Utils
 import { getPage } from '/utils/getReturn';
 import { cleanHead } from '/utils/cleanText';
+import { parseHtmlOnServer } from '/utils/parseHtmlOnServer';
 import { parseMetadata } from '/utils/parseMetadata';
 
 // Components
@@ -19,9 +20,10 @@ const getData = async ({ params }) => {
   };
   //
   const page = await getPage(shopPages[slug]);
+  const content = parseHtmlOnServer(page.content.rendered);
 
   return {
-    content: page.content.rendered,
+    content,
     title: page.title.rendered,
   };
 };

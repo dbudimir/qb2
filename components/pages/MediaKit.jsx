@@ -1,6 +1,4 @@
 'use client';
-import { useEffect, useState } from 'react';
-import parseHtmlString from '/utils/parseHtmlString';
 import styled from 'styled-components';
 
 // Components
@@ -145,18 +143,10 @@ const MediaKitContainer = styled.div`
 `;
 
 const MediaKit = ({ content, title }) => {
-  const [pageContent, setPageContent] = useState(null);
-
-  useEffect(() => {
-    !pageContent && setPageContent(parseHtmlString(content));
-  }, []);
-
   return (
     <MediaKitContainer className="page-container">
       <h1>{title}</h1>
-      <PostContentContainer className="content">
-        {pageContent}
-      </PostContentContainer>
+      <PostContentContainer className="content">{content}</PostContentContainer>
     </MediaKitContainer>
   );
 };

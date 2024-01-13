@@ -3,6 +3,7 @@ import { cleanText, cleanHead, cleanPosts } from '/utils/cleanText';
 import { getReturn, getPage } from '/utils/getReturn';
 
 import buildQuery from '/utils/buildQuery';
+import { parseHtmlOnServer } from '/utils/parseHtmlOnServer';
 import { parseMetadata } from '/utils/parseMetadata';
 
 import WNBAFreeAgency from '/components/pages/WNBAFreeAgency';
@@ -45,7 +46,7 @@ async function getData() {
       .split('" />')[0]
   );
   const title = freeAgencyPage.title.rendered;
-  const content = freeAgencyPage.content.rendered;
+  const content = parseHtmlOnServer(freeAgencyPage.content.rendered);
 
   // Sort posts
   const latestPosts = _.orderBy(posts, (post) => post.date, ['desc']);

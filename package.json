@@ -6,7 +6,7 @@
     "dev": "next dev -p 8007",
     "dev-server": "nodemon server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8010",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,7 +14,7 @@
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
     "html-react-parser": "^5.0.6",
-    "jsdom": "^23.0.1",
+    "jsdom": "^23.2.0",
     "lodash": "^4.17.21",
     "mongodb": "^6.3.0",
     "mongoose": "^6.12.2",

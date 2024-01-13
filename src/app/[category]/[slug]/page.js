@@ -1,10 +1,10 @@
 // Utils
 import Image from 'next/image';
 import dayjs from 'dayjs';
-import _ from 'lodash';
 import { cleanText, cleanHead, cleanPostContent } from '/utils/cleanText';
 import { getReturn, getPost } from '/utils/getReturn';
 import { parseMetadata } from '/utils/parseMetadata';
+import { parseHtmlOnServer } from '/utils/parseHtmlOnServer';
 
 // Components
 import PostHeader from '/components/posts/PostHeader';
@@ -16,18 +16,20 @@ const getData = async ({ params }) => {
 
   // Get stuff
   const [blogPost] = await getPost(slug);
-
   const [author, title, content] = await Promise.all([
     getReturn(`${process.env.WP_API}/users/${blogPost.author}`),
     cleanText(blogPost.title.rendered),
     cleanPostContent(blogPost.content.rendered),
   ]);
 
+  // Parse html
+  const parsedContent = parseHtmlOnServer(content);
+
   return {
     ...blogPost,
     author,
     category,
-    content,
+    content: parsedContent,
     image: blogPost.jetpack_featured_media_url,
     title,
     date: dayjs(blogPost.date).format('MMMM D, YYYY'),

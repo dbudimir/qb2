@@ -4,6 +4,7 @@ import { cleanText, cleanHead, cleanPosts } from '/utils/cleanText';
 import { getReturn, getPage } from '/utils/getReturn';
 
 import buildQuery from '/utils/buildQuery';
+import { parseHtmlOnServer } from '/utils/parseHtmlOnServer';
 import { parseMetadata } from '/utils/parseMetadata';
 
 import WNBASchedule from '/components/pages/WNBASchedule';
@@ -41,7 +42,7 @@ async function getData() {
   );
 
   const title = schedulePage.title.rendered;
-  const content = schedulePage.content.rendered;
+  const content = parseHtmlOnServer(schedulePage.content.rendered);
 
   // Sort posts
   const latestPosts = _.orderBy(posts, (post) => post.date, ['desc']);

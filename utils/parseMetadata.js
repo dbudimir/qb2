@@ -1,8 +1,9 @@
-import { JSDOM } from 'jsdom'
+import { JSDOM } from 'jsdom';
 
-const parseMetadata = htmlString => {
-  const dom = new JSDOM(htmlString)
-  const doc = dom.window.document
+const parseMetadata = (htmlString) => {
+  console.log('parseMetadata');
+  const dom = new JSDOM(htmlString);
+  const doc = dom.window.document;
 
   const metadata = {
     title: doc.querySelector('title').textContent || '',
@@ -20,15 +21,15 @@ const parseMetadata = htmlString => {
           width:
             doc.querySelector('meta[property="og:image:width"]')?.content || 0,
           height:
-            doc.querySelector('meta[property="og:image:height"]')?.content || 0
-        }
+            doc.querySelector('meta[property="og:image:height"]')?.content || 0,
+        },
       ],
       locale: doc.querySelector('meta[property="og:locale"]').content || '',
-      type: doc.querySelector('meta[property="og:type"]').content || ''
-    }
-  }
+      type: doc.querySelector('meta[property="og:type"]').content || '',
+    },
+  };
 
-  return metadata
-}
+  return metadata;
+};
 
-module.exports = { parseMetadata }
+module.exports = { parseMetadata };

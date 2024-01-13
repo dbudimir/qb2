@@ -1,9 +1,5 @@
 'use client';
 
-// Utils
-import { useEffect, useState } from 'react';
-import parseHtmlString from '/utils/parseHtmlString';
-
 // Components
 import HeaderText from '/components/shared/HeaderText';
 import LatestPosts from '/components/postgrid/LatestPosts';
@@ -13,19 +9,13 @@ import PostContentContainer from '/components/style/PostContentContainer';
 import StandardPageContainer from '/components/style/StandardPageContainer';
 
 const WNBAFreeAgency = ({ content, title, latestPosts }) => {
-  const [pageContent, setPageContent] = useState(null);
-
-  useEffect(() => {
-    !pageContent && setPageContent(parseHtmlString(content));
-  }, []);
-
   return (
     <StandardPageContainer className="page-container">
       <HeaderText titleContent={<h1>{title}</h1>} />
       <div className="content">
         <div className="col-left">
           <h4> WNBA Free Agency Overview</h4>
-          <PostContentContainer>{pageContent}</PostContentContainer>
+          <PostContentContainer>{content}</PostContentContainer>
         </div>
         <div className="col-right">
           <h4>Latest Posts</h4>

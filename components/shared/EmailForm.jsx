@@ -42,17 +42,17 @@ const EmailFormContainer = styled.div`
       right: unset;
       width: 100%;
       border: none;
-      box-shadow: -4px 4px #b49bd3;
+      box-shadow: -4px 4px #7c14cc;
 
       input {
-        border: 1px solid #b49bd3;
-        box-shadow: -4px 4px #b49bd3;
+        border: 1px solid #7c14cc;
+        box-shadow: -4px 4px #7c14cc;
       }
 
       button {
-        box-shadow: 0px 4px #b49bd3;
-        border: 1px solid #b49bd3;
-        background: #b49bd3;
+        box-shadow: 0px 4px #7c14cc;
+        border: 1px solid #7c14cc;
+        background: #7c14cc;
       }
     }
 
@@ -69,7 +69,7 @@ const EmailFormContainer = styled.div`
 
   div {
     background-color: #ffffff;
-    border: 2px solid #b49bd3;
+    border: 2px solid #7c14cc;
     padding: 20px 16px 0;
     color: #000000;
     width: 220px;
@@ -77,11 +77,11 @@ const EmailFormContainer = styled.div`
     font-size: 19px;
     line-height: 1.5;
     height: 148px;
-    box-shadow: -4px 4px #b49bd3;
+    box-shadow: -4px 4px #7c14cc;
   }
 
   svg {
-    background: #b49bd3;
+    background: #7c14cc;
     border-radius: 100px;
     border: 5px solid #ffffff;
     left: 50%;

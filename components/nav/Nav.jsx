@@ -195,7 +195,7 @@ const Nav = ({}) => {
               upperNavRef.current &&
               upperNavRef.current.getBoundingClientRect().top < -Math.abs(60),
             progress:
-              (window.pageYOffset / (document.body.clientHeight - 1000)) * 100,
+              (window.scrollY / (document.body.clientHeight - 1000)) * 100,
           }),
         { passive: true },
         ['once']

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const SchedulePage = styled.div`
   max-width: 900px;
@@ -161,7 +161,7 @@ const SchedulePage = styled.div`
   }
 
   // prettier-ignore
-  @media screen and (max-width: 1024px) { .team { a { font-size: 14px !important; } } }
+  @media screen and (max-width: 1024px) { .team { a { font-size: 14px ; } } }
 
   @media screen and (max-width: 768px) {
     .game-date {
@@ -175,7 +175,6 @@ const SchedulePage = styled.div`
       }
       .game {
         padding: 12px 0px;
-        font-size: 14px !important;
 
         .matchup {
           flex-wrap: wrap;
@@ -185,10 +184,12 @@ const SchedulePage = styled.div`
             img {
               max-height: 24px;
             }
+
             a {
-              font-size: 13px;
+              font-size: 15px;
             }
           }
+
           .at {
             font-size: 13px;
             margin: 0 6px;
@@ -205,6 +206,6 @@ const SchedulePage = styled.div`
       }
     }
   }
-`
+`;
 
-export default SchedulePage
+export default SchedulePage;

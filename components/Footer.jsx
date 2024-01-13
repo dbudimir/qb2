@@ -117,7 +117,7 @@ const FeaturedContainer = styled.div`
   padding: 48px calc(50% - 600px);
   gap: 48px 64px;
 
-  h3 {
+  .featured-header {
     width: 100%;
     text-align: center;
     font-size: 24px;
@@ -238,7 +238,7 @@ const Footer = ({ link }) => {
   return (
     <>
       <FeaturedContainer>
-        <h3>FEATURED IN</h3>
+        <span className="featured-header">FEATURED IN</span>
         {featuredLogos.map(({ link, logoUrl, altText, height, width }, i) => (
           <a
             key={`featured-image${i}`}

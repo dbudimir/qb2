@@ -1,6 +1,7 @@
 // Utils
 import { getPage } from '/utils/getReturn';
 import { cleanHead } from '/utils/cleanText';
+import { parseHtmlOnServer } from '/utils/parseHtmlOnServer';
 import { parseMetadata } from '/utils/parseMetadata';
 
 // Components
@@ -9,9 +10,11 @@ import MediaKit from '/components/pages/MediaKit';
 const getData = async ({}) => {
   //
   const page = await getPage(9975);
+  const content = parseHtmlOnServer(page.content.rendered);
 
   return {
-    content: page.content.rendered,
+    content: parseHtmlOnServer(page.content.rendered),
+    // content: page.content.rendered,
     title: page.title.rendered,
   };
 };
