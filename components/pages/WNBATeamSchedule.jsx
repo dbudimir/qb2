@@ -1,21 +1,20 @@
 'use client';
 
 // Utils
-import qbParser from '/utils/qbParser';
+// import qbParser from '/utils/qbParser';
 
 // Components
 import HeaderText from '/components/shared/HeaderText';
-import TagsRow from '/components/shared/TagsRow';
+import Schedule from '/components/Schedule';
 
 // Styles // import order matters
 import ScheduleContainer from '/components/style/ScheduleContainer';
 
-const WNBATeamSchedule = ({ teamName }) => {
+const WNBATeamSchedule = ({ title, teamSchedule }) => {
   return (
     <ScheduleContainer className="page-container">
-      <HeaderText
-        titleContent={<h1>2024 {formattedTeamName} SEASON SCHEDULE</h1>}
-      />
+      <HeaderText titleContent={<h1>{title}</h1>} />
+      <Schedule teamSchedule={teamSchedule} />
     </ScheduleContainer>
   );
 };

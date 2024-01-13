@@ -16,14 +16,8 @@ const tags = [
 
 async function getData() {
   // Getting stuff - pages, headlines, recent posts, and list of players
-  const freeAgencyPage = await getPage(15974);
-  const headlines = await getReturn(
-    buildQuery({
-      objectType: 'headlines',
-      fields: ['date', 'content'],
-      perPage: 20,
-    })
-  );
+  const schedulePage = await getPage(15974);
+
   const posts = await getReturn(
     buildQuery({
       objectType: 'posts',
@@ -41,18 +35,13 @@ async function getData() {
 
   // Cleanup strings - head and page content
   const head = await cleanHead(
-    freeAgencyPage.yoast_head,
+    schedulePage.yoast_head,
     `schedule`,
     'https://queenballers.wpcomstaging.com/wp-content/uploads/2020/07/Meganbbalportrait-04-1024x536.jpg'
   );
-  const metaDesc = await cleanText(
-    head
-      .split('<meta property="og:description" content="')
-      .pop()
-      .split('" />')[0]
-  );
-  const title = freeAgencyPage.title.rendered;
-  const content = freeAgencyPage.content.rendered;
+
+  const title = schedulePage.title.rendered;
+  const content = schedulePage.content.rendered;
 
   // Sort posts
   const latestPosts = _.orderBy(posts, (post) => post.date, ['desc']);
@@ -62,9 +51,7 @@ async function getData() {
     title,
     content,
     head,
-    headlines,
     posts: cleanLatestPosts,
-    metaDesc,
   };
 }
 

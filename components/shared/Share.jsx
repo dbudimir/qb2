@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
-import { FacebookShareButton, TwitterShareButton } from "react-share";
-import FacebookIcon from "../icons/FacebookIcon";
-import TwitterIcon from "../icons/TwitterIcon";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { FacebookShareButton, TwitterShareButton } from 'react-share';
+import FacebookIcon from '../icons/FacebookIcon';
+import TwitterIcon from '../icons/TwitterIcon';
 
 const ShareContainer = styled.div`
   display: flex;
@@ -38,11 +38,7 @@ const ShareContainer = styled.div`
 
     &:nth-of-type(2) {
       transition: all 1s ease;
-      background: #00acee !important;
-    }
-
-    svg {
-      width: 24px;
+      background: #000000 !important;
     }
   }
 
@@ -73,32 +69,32 @@ const ShareContainer = styled.div`
 `;
 
 const Share = ({ progress }) => {
-  const [metaDesc, setMetaDesc] = useState("");
-  const [pagePath, setPagePath] = useState("");
+  const [metaDesc, setMetaDesc] = useState('');
+  const [pagePath, setPagePath] = useState('');
 
   useEffect(() => {
     // Set the page path for the share buttons
     window && setPagePath(window.location.pathname);
-    
+
     // Set the meta description for the share buttons
-    const metaDescTag = document.querySelector('meta[name="description"]')
-    const metaDescContent = metaDescTag && metaDescTag.getAttribute('content')
+    const metaDescTag = document.querySelector('meta[name="description"]');
+    const metaDescContent = metaDescTag && metaDescTag.getAttribute('content');
     setMetaDesc(metaDescContent);
   }, []);
 
   return (
-    <ShareContainer id="share-buttons" className={progress > 10 ? "show" : ""}>
+    <ShareContainer id="share-buttons" className={progress > 10 ? 'show' : ''}>
       <FacebookShareButton
         url={`https://queenballers.club${pagePath}`}
         quote={metaDesc}
       >
-        <FacebookIcon stroke="#ffffff" />
+        <FacebookIcon stroke="#ffffff" wh="28" />
       </FacebookShareButton>
       <TwitterShareButton
         url={`https://queenballers.club${pagePath}`}
         title={`${metaDesc} @queenballers`}
       >
-        <TwitterIcon stroke="#ffffff" />
+        <TwitterIcon stroke="#ffffff" wh="22" />
       </TwitterShareButton>
     </ShareContainer>
   );

@@ -72,7 +72,6 @@ const TagPage = async ({ params }) => {
           titleContent={<h1>{tag.name}</h1>}
           bodyContent={<p className="page-desc">{tag.description}</p>}
         />
-
         <LatestPosts latestPosts={[...posts]} homePage />
       </div>
     </>

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const HeaderTextRow = styled.div`
   width: 100%;
@@ -70,21 +70,7 @@ const HeaderTextRow = styled.div`
       line-height: 1.5;
     }
   }
-
-  .social-links {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 18px;
-
-    a {
-      display: flex;
-
-      svg {
-        margin-right: 6px;
-      }
-    }
-  }
-`
+`;
 
 const HeaderText = ({ titleContent, bodyContent }) => (
   <HeaderTextRow>
@@ -94,6 +80,6 @@ const HeaderText = ({ titleContent, bodyContent }) => (
     {bodyContent}
     {bodyContent && <div className="header-text-boarder" />}
   </HeaderTextRow>
-)
+);
 
-export default HeaderText
+export default HeaderText;

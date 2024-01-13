@@ -8,9 +8,7 @@ import getTeam from '/utils/getTeam';
 import fullSchedule2024 from '/public/static/2024schedule.json';
 
 const Schedule = ({ teamSchedule }) => {
-  const gameDates = teamSchedule
-    ? teamSchedule.gameDates
-    : fullSchedule2024.gameDates;
+  const gameDates = teamSchedule ? teamSchedule : fullSchedule2024.gameDates;
 
   // TODO: We need to be able to filter the game dates by team name
 

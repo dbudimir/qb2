@@ -84,7 +84,7 @@ const AdminPageContainer = styled.div`
   }
 `;
 
-const Admin = ({ content, title }) => {
+const Admin = ({}) => {
   // Data
   const adminSettings = useContext(AppContext);
 

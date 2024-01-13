@@ -1,17 +1,15 @@
 const TwitterIcon = ({ stroke, fill, wh }) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width={wh}
     height={wh}
-    viewBox="0 0 24 24"
+    viewBox="0 0 291 291"
     fill={fill || '#ffffff'}
     stroke={stroke || '#ffffff'}
     strokeWidth="0"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="feather feather-twitter"
   >
-    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+    <path d="m236 0h46l-101 115 118 156h-92.6l-72.5-94.8-83 94.8h-46l107-123-113-148h94.9l65.5 86.6zm-16.1 244h25.5l-165-218h-27.4z" />
   </svg>
-)
+);
 
-export default TwitterIcon
+export default TwitterIcon;

@@ -172,16 +172,7 @@ const FooterContainer = styled.div`
   }
 
   .social-links {
-    width: 100%;
     margin-top: 18px;
-
-    a {
-      margin: 6px 24px 6px 0;
-
-      svg {
-        margin: unset;
-      }
-    }
   }
 
   a {
