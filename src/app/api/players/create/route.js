@@ -7,30 +7,30 @@ import Player from '/server/models/Player';
 export async function POST(req) {
   await connectDb();
 
-  const { name } = await req.json();
+  const body = await req.json();
 
-  const referenceId = name.toLowerCase().replace(/\s/g, '');
-  const existingPlayer = await Player.findOne({ name }).exec();
+  const referenceId = body.name.toLowerCase().replace(/\s/g, '');
+  const existingPlayer = await Player.findOne({ name: body.name }).exec();
 
   try {
     if (!existingPlayer) {
       // Create new player
       console.log('Create new player');
-      const newPlayer = await Player.create({ name, referenceId });
+      const newPlayer = await Player.create({ name: body.name, referenceId });
 
       return NextResponse.json({ newPlayer });
     }
 
     // Update existing player
-    console.log('Update Existing Plater');
+    console.log('Update existing player');
     const updatedPlayer = await Player.findOneAndUpdate(
-      { name },
+      { name: body.name },
       { referenceId, ...req.body },
       { new: true }
     );
 
     return NextResponse.json({ updatedPlayer });
   } catch (error) {
-    NextResponse.json(error);
+    return NextResponse.json(error);
   }
 }

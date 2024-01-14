@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+
 import _ from 'lodash';
 import styled from 'styled-components';
-
-// Utils
-import getUniquePlayers from '../../utils/data/parsePlayers.js';
 
 const SearchContainerOuter = styled.div`
   position: relative;
@@ -112,9 +109,7 @@ const SearchContainerOuter = styled.div`
   }
 `;
 
-const SearchContainer = ({ lineUp, setLineUp, searchInput }) => {
-  const playerRef = getUniquePlayers();
-
+const SearchContainer = ({ playerRef, lineUp, setLineUp, searchInput }) => {
   const [showError, setShowError] = useState(false);
   const [searchState, setSearchState] = useState({
     list: playerRef,
@@ -131,33 +126,34 @@ const SearchContainer = ({ lineUp, setLineUp, searchInput }) => {
     const selectedPlayer = _.find(playerRef, { PLAYER_NAME: name });
 
     // Try to match the player against an existing player in our database
-    const existingPlayer = await axios
-      .get(`/api/players/${name}`)
-      .then((response) => response.data)
-      .catch((error) => console.log(error));
+    const { player } = await fetch(`/api/players/${name}`).then((res) =>
+      res.json()
+    );
 
     // Prepare the player for the line up
     const formattedPlayer = {
-      ...existingPlayer,
-      name: selectedPlayer.PLAYER_NAME,
-      PPG: selectedPlayer.PTS,
-      RPG: selectedPlayer.REB,
-      APG: selectedPlayer.AST,
+      ...player,
+      name: player.name || selectedPlayer.PLAYER_NAME,
+      PPG: player.PPG || selectedPlayer.PTS,
+      RPG: player.RPG || selectedPlayer.REB,
+      APG: player.APG || selectedPlayer.AST,
     };
+
+    // Add the player to the database
+    await fetch(`/api/players/create`, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        name: formattedPlayer.name,
+        PPG: formattedPlayer.PPG,
+        RPG: formattedPlayer.RPG,
+        APG: formattedPlayer.APG,
+      }),
+    });
 
     setLineUp([...lineUp, formattedPlayer]);
     setSearchState({ ...searchState, value: '', active: 0 });
     searchInput.current.value = '';
-
-    axios
-      .post('/api/players/create', {
-        name: selectedPlayer.PLAYER_NAME,
-        PPG: selectedPlayer.PTS,
-        RPG: selectedPlayer.REB,
-        APG: selectedPlayer.AST,
-      })
-      .then((response) => response)
-      .catch((error) => console.log(error));
   };
 
   const searchPlayer = async (e) => {

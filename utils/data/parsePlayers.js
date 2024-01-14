@@ -1,5 +1,5 @@
-import players from '../../public/static/players.json';
-import players2023 from '../../public/static/2023players.json';
+import players from '/public/static/players.json';
+import players2023 from '/public/static/2023players.json';
 
 const getUniquePlayers = () => {
   const headers = players2023.resultSets[0].headers;

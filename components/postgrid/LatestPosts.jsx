@@ -1,15 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { getReturn } from '../../utils/getReturn';
-import { cleanPosts } from '../../utils/cleanText';
-import buildQuery from '../../utils/buildQuery';
+import { getReturn } from '/utils/getReturn';
+import { cleanPosts } from '/utils/cleanText';
+import buildQuery from '/utils/buildQuery';
 import styled from 'styled-components';
 
 // Components
-import Post from './Post';
-import Highlight from './Highlight';
-import Popular from './Popular';
+import Post from '/components/postgrid/Post';
+import Highlight from '/components/postgrid/Highlight';
+import Popular from '/components/postgrid/Popular';
 
 const LatestPostsContainer = styled.div`
   h3 {

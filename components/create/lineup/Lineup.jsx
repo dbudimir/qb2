@@ -1,8 +1,8 @@
 import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import styled from 'styled-components';
 import Image from 'next/image';
-import Router from 'next/router';
 
 // Components
 import Share from './Share';
@@ -230,31 +230,27 @@ const Lineup = ({
   createPage,
 }) => {
   //
+  const router = useRouter();
   const nameInputRef = useRef(null);
   const descriptionInputRef = useRef(null);
   //
   const submitSquad = async (e) => {
     e.preventDefault();
 
-    console.log('do this');
-    console.log(lineUp);
-
     const name = nameInputRef.current.value.trim();
     const description = descriptionInputRef.current.value;
     const players = lineUp.map((player) => player._id);
-    // const shortId =
-    //   Math.random().toString(36).substring(2, 5) +
-    //   Math.random().toString(36).substring(2, 5);
+    const shortId =
+      Math.random().toString(36).substring(2, 5) +
+      Math.random().toString(36).substring(2, 5);
 
-    // const savedLineup = await axios
-    //   .post('/api/lineups', {
-    //     playerName: lineUp[0].name,
-    //     lineUp: { name, description, players, shortId },
-    //   })
-    //   .then((response) => response.data)
-    //   .catch((error) => console.log(error));
+    const savedLineUp = await fetch('/api/lineups/create', {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ name, description, players, shortId }),
+    }).then((res) => res.json());
 
-    // Router.push(savedLineup.slug).then(() => window.scrollTo(0, 0));
+    router.push(savedLineUp.slug).then(() => window.scrollTo(0, 0));
   };
 
   return (

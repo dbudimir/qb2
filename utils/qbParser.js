@@ -4,10 +4,10 @@ import parse from 'html-react-parser';
 import { cleanText } from '/utils/cleanText';
 
 // Components
-import Schedule from '../components/Schedule';
-import LazyLoader from '../components/LazyLoader';
-import QuoteIcon from '../components/icons/QuoteIcon';
-// import PostCTA from '../../components/posts/PostCTA'
+import Schedule from '/components/Schedule';
+import LazyLoader from '/components/LazyLoader';
+import QuoteIcon from '/components/icons/QuoteIcon';
+import PostCTA from '/components/posts/PostCTA';
 
 const qbParser = ({ nodeList }, depth) => {
   return nodeList
@@ -42,8 +42,9 @@ const qbParser = ({ nodeList }, depth) => {
             return <ul key={`ul${i}`}>{parse(innerHTML)}</ul>;
           case 'OL':
             return <ol key={`ol${i}`}>{parse(innerHTML)}</ol>;
-          // case 'FORM':
-          //    return <PostCTA key={`cta${i}`} />
+          case 'FORM':
+            console.log('form here');
+            return <PostCTA key={`cta${i}`} />;
           case 'IFRAME':
             return (
               <div

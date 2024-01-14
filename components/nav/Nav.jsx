@@ -185,23 +185,27 @@ const Nav = ({}) => {
   const [navLayout, setNavLayout] = useState({ scroll: false, progress: 0 });
   const { scroll, progress } = navLayout;
 
-  useEffect(
-    () =>
-      window.addEventListener(
-        'scroll',
-        () =>
-          setNavLayout({
-            scroll:
-              upperNavRef.current &&
-              upperNavRef.current.getBoundingClientRect().top < -Math.abs(60),
-            progress:
-              (window.scrollY / (document.body.clientHeight - 1000)) * 100,
-          }),
-        { passive: true },
-        ['once']
-      ),
-    []
-  );
+  useEffect(() => {
+    window.addEventListener(
+      'scroll',
+      () =>
+        setNavLayout({
+          scroll:
+            upperNavRef.current &&
+            upperNavRef.current.getBoundingClientRect().top < -Math.abs(60),
+          progress:
+            (window.scrollY / (document.body.clientHeight - 1000)) * 100,
+        }),
+      { passive: true },
+      ['once']
+    );
+  }, []);
+
+  useEffect(() => {
+    setShowMenu(false);
+    setShowDropdown(false);
+    setShowShopDropdown(false);
+  }, [pathname]);
 
   useEffect(() => {
     showSearch && setShowMenu(false);

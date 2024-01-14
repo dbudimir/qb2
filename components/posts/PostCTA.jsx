@@ -1,4 +1,6 @@
-import styled from 'styled-components'
+'use client';
+
+import styled from 'styled-components';
 
 const PostCTAContainer = styled.div`
   box-shadow: -4px 4px #393939;
@@ -63,7 +65,7 @@ const PostCTAContainer = styled.div`
       margin-bottom: 12px;
     }
   }
-`
+`;
 
 const PostCTA = () => (
   <PostCTAContainer>
@@ -71,10 +73,14 @@ const PostCTA = () => (
       <span>Access exclusive content</span>
       <h4>Support Queen Ballers on Patreon</h4>
     </div>
-    <a href="https://www.patreon.com/queenballersclub" target="_blank" rel="noreferrer">
+    <a
+      href="https://www.patreon.com/queenballersclub"
+      target="_blank"
+      rel="noreferrer"
+    >
       Join Today
     </a>
   </PostCTAContainer>
-)
+);
 
-export default PostCTA
+export default PostCTA;

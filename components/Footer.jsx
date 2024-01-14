@@ -229,7 +229,7 @@ const links = [
   { text: 'Queen Ballers Club', href: '/' },
   { text: 'Advertise', href: '/advertise' },
   { text: 'Media Kit', href: '/media-kit' },
-  // { text: "Team Maker", href: "/create-team" },
+  { text: 'Team Maker', href: '/create-team' },
 ];
 
 const Footer = ({ link }) => {

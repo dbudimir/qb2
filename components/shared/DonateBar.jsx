@@ -88,7 +88,7 @@ const DonateBar = ({ progress }) => {
     >
       {/* eslint-disable-next-line react/no-unescaped-entities */}
       <span>Don't miss stories. Sign up today!</span>
-      <span className="mobile">Support Queen Ballers </span>
+      <span className="mobile">Get the 3 Pointers email </span>
 
       {/* <a href="https://www.patreon.com/queenballersclub" target="_blank" rel="noreferrer">
          Join Today
