@@ -33,7 +33,7 @@ async function getData() {
         'excerpt',
         'jetpack_featured_media_url',
       ],
-      perPage: 50,
+      perPage: 25,
       page: 1,
     })
   );

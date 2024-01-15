@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { getReturn } from '/utils/getReturn';
 import { cleanPosts } from '/utils/cleanText';
+import _ from 'lodash';
 import buildQuery from '/utils/buildQuery';
 import styled from 'styled-components';
 
@@ -179,7 +180,7 @@ const LatestPosts = ({ latestPosts, homePage, hideHeader }) => {
           'excerpt',
           'jetpack_featured_media_url',
         ],
-        perPage: 50,
+        perPage: 25,
         page: 2,
       })
     );
