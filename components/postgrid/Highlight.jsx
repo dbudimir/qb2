@@ -2,7 +2,7 @@
 
 // Utils
 import { useEffect, useState } from 'react';
-import { parseHtmlOnClient } from '/utils/parseHtmlOnClient';
+import parseHtmlOnClient from '/utils/parseHtmlOnClient';
 import styled from 'styled-components';
 
 const HighlightContainer = styled.div`

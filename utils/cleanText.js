@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-const cleanText = (string) =>
+export const cleanText = (string) =>
   string
     .replace(/(&#(\d+);)/g, (match, capture, charCode) =>
       String.fromCharCode(charCode)
@@ -64,5 +64,3 @@ export const cleanPostContent = (postContent) =>
         : str
     )
     .join(' ');
-
-module.exports = { cleanText, cleanHead, cleanPosts, cleanPostContent };

@@ -25,4 +25,4 @@ const parseHtmlOnClient = (content) => {
   return parsedContentArray;
 };
 
-module.exports = { parseHtmlOnClient };
+export default parseHtmlOnClient;

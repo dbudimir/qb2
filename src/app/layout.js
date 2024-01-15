@@ -1,7 +1,7 @@
 // Global styles
 import '../../public/static/style.scss';
-import { Inter } from 'next/font/google';
-const inter = Inter({ subsets: ['latin'] });
+// import { Inter } from 'next/font/google';
+// const inter = Inter({ subsets: ['latin'] });
 
 // Utils
 import { GoogleTagManager } from '@next/third-parties/google';
@@ -47,7 +47,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <AppContext adminSettings={adminSettings}>
           <StyledComponentsRegistry>
             <NavAd

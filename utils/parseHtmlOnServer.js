@@ -28,4 +28,4 @@ const parseHtmlOnServer = (content) => {
   return parsedContentArray;
 };
 
-module.exports = { parseHtmlOnServer };
+export default parseHtmlOnServer;

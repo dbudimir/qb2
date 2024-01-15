@@ -2,8 +2,8 @@ import _ from 'lodash';
 import { cleanText, cleanHead, cleanPosts } from '/utils/cleanText';
 import { getReturn, getPage } from '/utils/getReturn';
 import buildQuery from '/utils/buildQuery';
-import { parseHtmlOnServer } from '/utils/parseHtmlOnServer';
-import { parseMetadata } from '/utils/parseMetadata';
+import parseHtmlOnServer from '/utils/parseHtmlOnServer';
+import parseMetadata from '/utils/parseMetadata';
 
 import WNBAAllStarGame from '/components/pages/WNBAAllStarGame';
 

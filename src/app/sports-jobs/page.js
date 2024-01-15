@@ -1,6 +1,6 @@
 import { getPage } from '../../../utils/getReturn';
 import { cleanHead } from '../../../utils/cleanText';
-import { parseMetadata } from '/utils/parseMetadata';
+import parseMetadata from '/utils/parseMetadata';
 
 import SportsJobs from '../../../components/pages/SportsJobs';
 

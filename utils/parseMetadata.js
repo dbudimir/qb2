@@ -31,4 +31,4 @@ const parseMetadata = (htmlString) => {
   return metadata;
 };
 
-module.exports = { parseMetadata };
+export default parseMetadata;

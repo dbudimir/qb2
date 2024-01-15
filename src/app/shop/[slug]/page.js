@@ -1,8 +1,8 @@
 // Utils
 import { getPage } from '/utils/getReturn';
 import { cleanHead } from '/utils/cleanText';
-import { parseHtmlOnServer } from '/utils/parseHtmlOnServer';
-import { parseMetadata } from '/utils/parseMetadata';
+import parseHtmlOnServer from '/utils/parseHtmlOnServer';
+import parseMetadata from '/utils/parseMetadata';
 
 // Components
 import Shop from '/components/pages/Shop';

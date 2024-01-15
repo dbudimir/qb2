@@ -11,7 +11,10 @@ async function getData({ params }) {
 
   const lineUp = await fetch(
     `${process.env.DOMAIN}/api/lineups/${shortId}`
-  ).then(async (res) => await res.json());
+  ).then((res) => res.json());
+
+  console.log('url', `${process.env.DOMAIN}/api/lineups/${shortId}`);
+  console.log('lineUp', lineUp);
 
   const slug = `/teams/${shortId}/${teamName}`;
   const metaDesc = `Check out ${

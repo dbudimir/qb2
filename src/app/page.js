@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import _ from 'lodash';
-import { parseMetadata } from '/utils/parseMetadata';
+import parseMetadata from '/utils/parseMetadata';
 
 // Utils
 import { getReturn, getPage } from '/utils/getReturn';

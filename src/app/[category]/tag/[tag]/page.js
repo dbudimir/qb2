@@ -3,7 +3,7 @@
 // Utils
 import { getReturn, getTag } from '/utils/getReturn';
 import { cleanPosts, cleanHead } from '/utils/cleanText';
-import { parseMetadata } from '/utils/parseMetadata';
+import parseMetadata from '/utils/parseMetadata';
 import buildQuery from '/utils/buildQuery';
 import _ from 'lodash';
 
