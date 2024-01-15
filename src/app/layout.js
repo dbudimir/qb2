@@ -16,7 +16,8 @@ import Footer from '../../components/Footer';
 async function getData() {
   try {
     const adminSettings = await fetch(
-      `${process.env.DOMAIN}/api/admin-settings`
+      `${process.env.DOMAIN}/api/admin-settings`,
+      { cache: 'no-store' }
     ).then((res) => res.json());
 
     return { ...adminSettings[0] };
