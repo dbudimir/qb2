@@ -6,8 +6,6 @@ import Lineup from '/server/models/Lineup';
 export async function GET(req, { params }) {
   await connectDb();
 
-  console.log(params);
-
   try {
     const lineUp = await Lineup.findOne({ shortId: params.shortId })
       .populate('players')

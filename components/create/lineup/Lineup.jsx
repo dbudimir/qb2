@@ -250,7 +250,8 @@ const Lineup = ({
       body: JSON.stringify({ name, description, players, shortId }),
     }).then((res) => res.json());
 
-    router.push(savedLineUp.slug).then(() => window.scrollTo(0, 0));
+    // Take the user to see their team
+    router.push(savedLineUp.slug);
   };
 
   return (
@@ -262,7 +263,6 @@ const Lineup = ({
       {
         // Player lineup
         lineUp.map((player, lineUpIndex) => {
-          console.log(player);
           const { image, name, PPG, RPG, APG, FGPercent, ThreePointPercent } =
             player;
           // Change colors of default images

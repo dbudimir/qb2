@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import styled from 'styled-components';
 import { usePathname } from 'next/navigation';
 
 // Components
@@ -17,6 +16,8 @@ import EmailForm from '../shared/EmailForm';
 import Share from '../shared/Share';
 import DonateBar from '../shared/DonateBar';
 import ScrollToTop from './ScrollToTop';
+
+import styled from 'styled-components';
 
 // Styles // import order matters
 const NavLower = styled.div`

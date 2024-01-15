@@ -182,6 +182,10 @@ const PostContentContainer = styled.div`
   form {
     max-width: 720px;
     margin: 24px auto -24px;
+
+    &.donate-button {
+      margin: 0 auto;
+    }
   }
 
   .schema-faq {

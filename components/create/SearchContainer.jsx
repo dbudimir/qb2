@@ -119,9 +119,6 @@ const SearchContainer = ({ playerRef, lineUp, setLineUp, searchInput }) => {
   const { list, value, active } = searchState;
   //
   const getPlayerStats = async ({ name, slug }) => {
-    console.log('all players', playerRef);
-    console.log(name, slug);
-
     // Find the player in the "local database"
     const selectedPlayer = _.find(playerRef, { PLAYER_NAME: name });
 

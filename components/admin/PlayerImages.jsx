@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import _ from 'lodash';
 import dayjs from 'dayjs';
 import styled from 'styled-components';
 
@@ -108,11 +108,10 @@ const PlayerImages = ({}) => {
 
   useEffect(() => {
     const getPlayers = async () => {
-      console.log('get players');
       try {
-        const response = await axios.get('/api/players');
-        console.log(response.data);
-        setAllPlayers(response.data);
+        const players = await fetch('/api/players').then((res) => res.json());
+
+        setAllPlayers(players);
       } catch (error) {
         console.log(error);
       }
@@ -128,9 +127,13 @@ const PlayerImages = ({}) => {
 
   const onClickSaveImage = async () => {
     try {
-      await axios.post('/api/update-player-image', {
-        id: playerToUpdate.playerId,
-        imageUrl: playerImage,
+      await fetch('/api/players/update-image', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({
+          id: playerToUpdate.playerId,
+          imageUrl: playerImage,
+        }),
       });
 
       const playerArray = allPlayers;

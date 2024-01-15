@@ -4,7 +4,7 @@ import { cleanPosts } from '/utils/cleanText';
 
 // Components
 import LatestPosts from '/components/postgrid/LatestPosts';
-// import Team from '/components/pages/Team';
+import Lineup from '/components/pages/Lineup';
 
 async function getData({ params }) {
   const { shortId, teamName } = params;
@@ -13,8 +13,6 @@ async function getData({ params }) {
     `${process.env.DOMAIN}/api/lineups/${shortId}`
   ).then((res) => res.json());
 
-  console.log('lineUp', lineUp.name);
-
   const slug = `/teams/${shortId}/${teamName}`;
   const metaDesc = `Check ${lineUp.name} featuring WNBA players ${lineUp.players[0].name} and ${lineUp.players[1].name}. Find out their stats & discover who else made the team!`;
 
@@ -22,17 +20,6 @@ async function getData({ params }) {
   const latestPosts = await getReturn(
     `${process.env.WP_API}/posts/?per_page=3&_fields=link,excerpt,title,date,jetpack_featured_media_url`
   );
-  // const shopPages = {
-  //   shorts: 23156,
-  //   shoes: 23225,
-  //   shirts: 23227,
-  //   pants: 23229,
-  //   basketballs: 23231,
-  //   hoodies: 23237,
-  // };
-  // //
-  // const page = await getPage(shopPages[slug]);
-  // const content = parseHtmlOnServer(page.content.rendered);
 
   return {
     ...lineUp,
@@ -62,7 +49,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const TeamPage = async ({ params }) => {
+const LineupPage = async ({ params }) => {
   const data = await getData({ params });
 
   console.log('data', data);
@@ -70,10 +57,10 @@ const TeamPage = async ({ params }) => {
   // return <Team playerRef={playerRef} />;
   return (
     <>
-      <div>{data.name}</div>
+      <Lineup data={data} />
       <LatestPosts latestPosts={data.posts} hideHeader />
     </>
   );
 };
 
-export default TeamPage;
+export default LineupPage;

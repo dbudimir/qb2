@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { TwitterTweetEmbed } from 'react-twitter-embed';
+// import { TwitterTweetEmbed } from 'react-twitter-embed';
+import { Tweet } from 'react-tweet';
 import parse from 'html-react-parser';
 import { cleanText } from '/utils/cleanText';
 
@@ -7,7 +8,7 @@ import { cleanText } from '/utils/cleanText';
 import Schedule from '/components/Schedule';
 import LazyLoader from '/components/LazyLoader';
 import QuoteIcon from '/components/icons/QuoteIcon';
-import PostCTA from '/components/posts/PostCTA';
+// import PostCTA from '/components/posts/PostCTA';
 
 const qbParser = ({ nodeList }, depth) => {
   return nodeList
@@ -43,8 +44,12 @@ const qbParser = ({ nodeList }, depth) => {
           case 'OL':
             return <ol key={`ol${i}`}>{parse(innerHTML)}</ol>;
           case 'FORM':
-            console.log('form here');
-            return <PostCTA key={`cta${i}`} />;
+            return (
+              <form key={`form${i}`} class="donate-button">
+                {parse(innerHTML)}
+              </form>
+            );
+
           case 'IFRAME':
             return (
               <div
@@ -110,7 +115,7 @@ const qbParser = ({ nodeList }, depth) => {
 
               return (
                 <LazyLoader key={`lazy${i}`} index={i}>
-                  <TwitterTweetEmbed tweetId={tweetId} />
+                  <Tweet id={tweetId} />
                 </LazyLoader>
               );
             }

@@ -1,11 +1,11 @@
-// 'use client'
+'use client';
 
-import { useRef, useEffect } from "react";
-import { useRouter } from 'next/navigation'
-import styled from "styled-components";
+import { useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import styled from 'styled-components';
 
 // Components
-import SearchIcon from "./icons/SearchIcon";
+import SearchIcon from './icons/SearchIcon';
 
 const SearchBoxContainer = styled.div`
   align-items: center;
@@ -86,37 +86,42 @@ const SearchBoxContainer = styled.div`
 `;
 
 const SearchBox = ({ scroll, showSearch, setShowSearch }) => {
-  const router = useRouter()
+  const router = useRouter();
   const searchBar = useRef(null);
-  
+
   //
   const runSearch = () => {
-    router.push(`/search/${searchBar.current.value}`)
-    searchBar.current.value = "";
+    router.push(`/search/${searchBar.current.value}`);
+    searchBar.current.value = '';
     setShowSearch(!showSearch);
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      searchBar.current.focus();
-    }, 500);
+    showSearch &&
+      setTimeout(() => {
+        searchBar.current.focus();
+      }, 500);
   }, [showSearch]);
 
   return (
     <SearchBoxContainer
-      className={`search-input ${scroll && "sticky"} ${showSearch && "show"}`}
+      className={`search-input ${scroll && 'sticky'} ${showSearch && 'show'}`}
     >
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Search..."
-          ref={searchBar}
-          onKeyUp={(e) => e.key === "Enter" && showSearch && runSearch()}
-        />
-        <span onClick={() => searchBar.current.value.length > 0 && runSearch()}>
-          SEARCH
-        </span>
-      </div>
+      {showSearch && (
+        <div className="input-container">
+          <input
+            type="text"
+            placeholder="Search..."
+            ref={searchBar}
+            onKeyUp={(e) => e.key === 'Enter' && showSearch && runSearch()}
+          />
+          <span
+            onClick={() => searchBar.current.value.length > 0 && runSearch()}
+          >
+            SEARCH
+          </span>
+        </div>
+      )}
       <SearchIcon
         stroke="#000000"
         showSearch={showSearch}

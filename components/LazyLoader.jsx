@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 const LazyLoaderContainer = styled.figure`
   width: 100%;
-  /* max-width: 550px; */
   background-size: contain;
   border: none;
   margin: 0 auto;
@@ -25,18 +24,15 @@ const LazyLoaderContainer = styled.figure`
     display: block;
   }
 
-  .twitter-tweet {
+  .react-tweet-theme {
     display: flex;
     margin: 0 auto !important;
     justify-content: center;
+    width: 96% !important;
+    max-width: 550px !important;
 
-    iframe {
-      width: 96% !important;
-      max-width: 550px !important;
-
-      @media screen and (max-width: 600px) {
-        min-width: 280px !important;
-      }
+    article {
+      width: 100%;
     }
   }
 
