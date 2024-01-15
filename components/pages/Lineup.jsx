@@ -54,7 +54,7 @@ const LineUpContainer = styled.div`
 `;
 
 const ShowLineup = ({ data }) => {
-  const { name, description, players, slug, pageUrl, metaDesc, posts } = data;
+  const { name, description, players, slug, pageUrl, metaDesc } = data;
 
   return (
     <>

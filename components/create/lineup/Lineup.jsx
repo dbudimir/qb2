@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 import styled from 'styled-components';
 import Image from 'next/image';
 
@@ -272,10 +271,7 @@ const Lineup = ({
           }`;
           return (
             <div className="player-card" key={`player${lineUpIndex}`}>
-              <div
-                className="image-container"
-                style={{ filter: image ? 'unset' : `hue-rotate(${degree}deg)` }}
-              >
+              <div className="image-container">
                 <img src={imageSource} alt={name} width={220} height={280} />
                 {/* TODO: we can support next/image another time */}
                 {/* <Image
