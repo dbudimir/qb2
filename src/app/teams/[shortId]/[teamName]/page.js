@@ -11,10 +11,14 @@ async function getData({ params }) {
 
   const lineUp = await fetch(
     `${process.env.DOMAIN}/api/lineups/${shortId}`
-  ).then((res) => res.json());
+  ).then(async (res) => await res.json());
 
   const slug = `/teams/${shortId}/${teamName}`;
-  const metaDesc = `Check ${lineUp.name} featuring WNBA players ${lineUp.players[0].name} and ${lineUp.players[1].name}. Find out their stats & discover who else made the team!`;
+  const metaDesc = `Check out ${
+    lineUp?.name ? lineUp.name : 'this lineup'
+  } featuring WNBA players ${lineUp.players[0].name} and ${
+    lineUp.players[1].name
+  }. Find out their stats & discover who else made the team!`;
 
   // Generate recent posts
   const latestPosts = await getReturn(
