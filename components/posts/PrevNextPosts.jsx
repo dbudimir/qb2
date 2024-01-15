@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-const dayjs = require("dayjs");
-const utc = require("dayjs/plugin/utc");
-const timezone = require("dayjs/plugin/timezone");
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-import styled from "styled-components";
-import Link from "next/link";
-import Image from "next/image";
+import styled from 'styled-components';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { cleanPosts } from "../../utils/cleanText";
-import { getReturn, getPost } from "../../utils/getReturn";
-import buildQuery from "../../utils/buildQuery";
+import { cleanPosts } from '../../utils/cleanText';
+import { getReturn, getPost } from '../../utils/getReturn';
+import buildQuery from '../../utils/buildQuery';
 
 const PrevNextPostsContainer = styled.div`
   max-width: 720px;
@@ -84,33 +84,33 @@ const PrevNextPosts = ({ currentPostDate }) => {
     const postDate = dayjs(currentPostDate);
 
     const getPostBeforeQuery = buildQuery({
-      objectType: "posts",
+      objectType: 'posts',
       fields: [
-        "link",
-        "title",
-        "date",
-        "excerpt",
-        "jetpack_featured_media_url",
+        'link',
+        'title',
+        'date',
+        'excerpt',
+        'jetpack_featured_media_url',
       ],
       perPage: 3,
       before: postDate.toISOString(),
-      orderby: "date",
-      order: "desc",
+      orderby: 'date',
+      order: 'desc',
     });
 
     const getPostAfterQuery = buildQuery({
-      objectType: "posts",
+      objectType: 'posts',
       fields: [
-        "link",
-        "title",
-        "date",
-        "excerpt",
-        "jetpack_featured_media_url",
+        'link',
+        'title',
+        'date',
+        'excerpt',
+        'jetpack_featured_media_url',
       ],
       perPage: 3,
       after: postDate.toISOString(),
-      orderby: "date",
-      order: "asc",
+      orderby: 'date',
+      order: 'asc',
     });
 
     const before = await getReturn(getPostBeforeQuery);
@@ -146,7 +146,7 @@ const PrevNextPosts = ({ currentPostDate }) => {
         return (
           postItem && (
             <Link href={postItem?.link} key={`nexPrev${i}`}>
-              <span>{`${i === 0 ? "Previous" : "Next"} Post`}</span>
+              <span>{`${i === 0 ? 'Previous' : 'Next'} Post`}</span>
               <div className="image-container prev-next">
                 <Image
                   src={postItem.image}

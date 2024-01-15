@@ -1,5 +1,4 @@
-const buildQuery = require('./buildQuery');
-const _ = require('lodash');
+import buildQuery from '/utils/buildQuery';
 
 export const getReturn = async (url) => {
   try {

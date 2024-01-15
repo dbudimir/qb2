@@ -1,5 +1,5 @@
 // Data
-const teams = require('/public/static/teams.json');
+import teams from '/public/static/teams.json';
 
 // Constants
 const API_DOMAIN = 'https://queenballers.wpcomstaging.com/';
