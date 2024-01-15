@@ -10,7 +10,7 @@ export async function GET() {
   try {
     const adminSettings = await Admin.find({ _id: '60a9cb629e15d3bbe6a033f8' });
 
-    return NextResponse.json({ adminSettings });
+    return NextResponse.json(adminSettings);
   } catch (error) {
     return NextResponse.json(error);
   }

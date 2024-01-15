@@ -14,22 +14,12 @@ import BannerAd from '../../components/ads/BannerAd';
 import Footer from '../../components/Footer';
 
 async function getData() {
-  // try {
-  //   const adminSettings = await fetch(
-  //     `${process.env.DOMAIN}/api/admin-settings`
-  //   ).then((res) => res.json());
-
-  //   return { ...adminSettings.adminSettings[0] };
-  // } catch (error) {
-  //   throw new Error('Failed to fetch data');
-  // }
-
   try {
     const adminSettings = await fetch(
-      `https://queenballers.club/api/admin`
+      `${process.env.DOMAIN}/api/admin-settings`
     ).then((res) => res.json());
 
-    return adminSettings;
+    return { ...adminSettings[0] };
   } catch (error) {
     throw new Error('Failed to fetch data');
   }
