@@ -1,6 +1,4 @@
-import mongoose from 'mongoose'
-
-const uniqueValidator = require('mongoose-unique-validator')
+import mongoose from 'mongoose';
 
 const AdminSchema = new mongoose.Schema(
   {
@@ -21,12 +19,10 @@ const AdminSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-delete mongoose.connection.models.Admin
+delete mongoose.connection.models.Admin;
 
-AdminSchema.plugin(uniqueValidator)
+const Admin = mongoose.model('Admin', AdminSchema);
 
-const Admin = mongoose.model('Admin', AdminSchema)
-
-module.exports = Admin
+export default Admin;

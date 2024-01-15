@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import connectDb from '/utils/connectDB';
 
 import Lineup from '/server/models/Lineup';
+import Player from '/server/models/Player'; // DO NOT REMOVE IMPORTANT FOR POPULATE
 
 export async function GET(req, { params }) {
   await connectDb();

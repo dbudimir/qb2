@@ -1,6 +1,4 @@
-import mongoose from 'mongoose'
-
-const uniqueValidator = require('mongoose-unique-validator')
+import mongoose from 'mongoose';
 
 const LineupSchema = new mongoose.Schema(
   {
@@ -19,12 +17,10 @@ const LineupSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-delete mongoose.connection.models.Lineup
+delete mongoose.connection.models.Lineup;
 
-LineupSchema.plugin(uniqueValidator)
+const Lineup = mongoose.model('Lineup', LineupSchema);
 
-const Lineup = mongoose.model('Lineup', LineupSchema)
-
-module.exports = Lineup
+export default Lineup;

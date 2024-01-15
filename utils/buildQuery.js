@@ -27,6 +27,4 @@ const buildQuery = (queryParams) => {
   return query;
 };
 
-module.exports = buildQuery;
-
-// export default buildQuery
+export default buildQuery;

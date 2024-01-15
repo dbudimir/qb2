@@ -1,6 +1,4 @@
-import mongoose from 'mongoose'
-
-const uniqueValidator = require('mongoose-unique-validator')
+import mongoose from 'mongoose';
 
 const PlayerSchema = new mongoose.Schema(
   {
@@ -19,12 +17,10 @@ const PlayerSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-delete mongoose.connection.models.Player
+delete mongoose.connection.models.Player;
 
-PlayerSchema.plugin(uniqueValidator)
+const Player = mongoose.model('Player', PlayerSchema);
 
-const Player = mongoose.model('Player', PlayerSchema)
-
-module.exports = Player
+export default Player;

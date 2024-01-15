@@ -1,7 +1,7 @@
 const buildQuery = require('./buildQuery');
 const _ = require('lodash');
 
-const getReturn = async (url) => {
+export const getReturn = async (url) => {
   try {
     const res = await fetch(url);
 
@@ -12,7 +12,7 @@ const getReturn = async (url) => {
   }
 };
 
-const getPage = async (pageId) => {
+export const getPage = async (pageId) => {
   try {
     const res = await fetch(
       `https://queenballers.wpcomstaging.com/wp-json/wp/v2/pages/${pageId}`
@@ -24,7 +24,7 @@ const getPage = async (pageId) => {
   }
 };
 
-const getPost = async (postSlug) => {
+export const getPost = async (postSlug) => {
   try {
     const res = await fetch(
       `https://queenballers.wpcomstaging.com/wp-json/wp/v2/posts?slug=${postSlug}`
@@ -36,7 +36,7 @@ const getPost = async (postSlug) => {
   }
 };
 
-const getTag = async (tagSlug) => {
+export const getTag = async (tagSlug) => {
   const tag = await getReturn(
     buildQuery({
       objectType: 'tags',
@@ -50,12 +50,10 @@ const getTag = async (tagSlug) => {
   return tag[0];
 };
 
-const getAuthor = async (authorSlug) => {
+export const getAuthor = async (authorSlug) => {
   const author = await getReturn(
     ` ${process.env.WP_API}/users?slug=${authorSlug}`
   );
 
   return author[0];
 };
-
-module.exports = { getReturn, getPage, getPost, getTag, getAuthor };

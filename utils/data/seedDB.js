@@ -17,4 +17,4 @@ playerRef.forEach((player, index) => {
 
 seedDB();
 
-module.exports = seedDB;
+export default seedDB;
