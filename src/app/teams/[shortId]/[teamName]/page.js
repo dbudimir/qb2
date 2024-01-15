@@ -52,9 +52,6 @@ export async function generateMetadata({ params }) {
 const LineupPage = async ({ params }) => {
   const data = await getData({ params });
 
-  console.log('data', data);
-
-  // return <Team playerRef={playerRef} />;
   return (
     <>
       <Lineup data={data} />

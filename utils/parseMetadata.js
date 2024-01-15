@@ -1,7 +1,6 @@
 import { JSDOM } from 'jsdom';
 
 const parseMetadata = (htmlString) => {
-  console.log('parseMetadata');
   const dom = new JSDOM(htmlString);
   const doc = dom.window.document;
 
