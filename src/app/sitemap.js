@@ -68,14 +68,14 @@ const getPages = async (origin) => {
     link: `https://queenballers.club${team.scheduleUrl}`,
   }));
 
-  const lineUpList = await fetch('https://queenballers.club/api/lineups')
-    .then((res) => res.json())
-    .then((lineUps) =>
-      lineUps.map((lineup) => ({
-        link: `https://queenballers.club${lineup.slug}`,
-      }))
-    )
-    .catch((err) => console.log(err));
+  // const lineUpList = await fetch('https://queenballers.club/api/lineups')
+  //   .then((res) => res.json())
+  //   .then((lineUps) =>
+  //     lineUps.map((lineup) => ({
+  //       link: `https://queenballers.club${lineup.slug}`,
+  //     }))
+  //   )
+  //   .catch((err) => console.log(err));
 
   const shopPageList = [
     { link: 'https://queenballers.club/shop/shirts' },
@@ -92,7 +92,7 @@ const getPages = async (origin) => {
     ...pageList,
     ...shopPageList,
     ...postList,
-    ...lineUpList,
+    // ...lineUpList,
     // ...authorList,
     // ...tagList,
   ];
