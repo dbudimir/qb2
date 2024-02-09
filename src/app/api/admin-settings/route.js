@@ -23,21 +23,9 @@ export async function POST(req) {
   const adminSettings = await req.json();
 
   try {
-    Admin.findOneAndUpdate(
+    await Admin.findOneAndUpdate(
       { _id: '60a9cb629e15d3bbe6a033f8' },
-      { ...adminSettings },
-      { upsert: true },
-      (error, result) => {
-        if (!error) {
-          // If the document doesn't exist
-          if (!result) {
-            // Create it
-            result = new Admin();
-          }
-          // Save the document
-          result.save();
-        }
-      }
+      adminSettings
     );
 
     return NextResponse.json('Success');

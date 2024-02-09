@@ -57,7 +57,7 @@ async function getData() {
   const latestPosts = _.orderBy(posts, (post) => post.date, ['desc']);
   const cleanLatestPosts = await cleanPosts(latestPosts);
 
-  // TO DO LATER // Inject highlight into feed
+  // Inject highlight into feed
   const [highlight] = await getReturn(
     buildQuery({
       objectType: 'highlights',

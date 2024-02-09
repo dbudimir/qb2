@@ -57,6 +57,11 @@ const nextConfig = {
         destination: '/basketball/tag/chicago-sky',
         permanent: true,
       },
+      {
+        source: '/basketball/best-basketball-trainers-on-instagram',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
 };

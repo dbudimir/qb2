@@ -101,13 +101,20 @@ const Admin = ({}) => {
 
   const updateAdminSettings = async () => {
     try {
-      await fetch('/api/admin-settings', {
+      const response = await fetch('/api/admin-settings', {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(settings),
       });
+
+      const data = await response.json();
+
+      if (data === 'Success') {
+        alert('It worked, refresh the page to see changes');
+      }
     } catch (error) {
       console.log(error);
+      alert('Could not update admin settings try again or check with David');
     }
   };
 
