@@ -6,25 +6,25 @@ const parseMetadata = (htmlString) => {
 
   const metadata = {
     title: doc.querySelector('title').textContent || '',
-    description: doc.querySelector('meta[name="description"]').content || '',
+    description: doc.querySelector('meta[name="description"]')?.content || '',
     openGraph: {
-      title: doc.querySelector('meta[property="og:title"]').content || '',
+      title: doc.querySelector('meta[property="og:title"]')?.content || '',
       description:
-        doc.querySelector('meta[property="og:description"]').content || '',
-      url: doc.querySelector('meta[property="og:url"]').href || '',
+        doc.querySelector('meta[property="og:description"]')?.content || '',
+      url: doc.querySelector('meta[property="og:url"]')?.href || '',
       siteName:
-        doc.querySelector('meta[property="og:site_name"]').content || '',
+        doc.querySelector('meta[property="og:site_name"]')?.content || '',
       images: [
         {
-          url: doc.querySelector('meta[property="og:image"]').content || '',
+          url: doc.querySelector('meta[property="og:image"]')?.content || '',
           width:
             doc.querySelector('meta[property="og:image:width"]')?.content || 0,
           height:
             doc.querySelector('meta[property="og:image:height"]')?.content || 0,
         },
       ],
-      locale: doc.querySelector('meta[property="og:locale"]').content || '',
-      type: doc.querySelector('meta[property="og:type"]').content || '',
+      locale: doc.querySelector('meta[property="og:locale"]')?.content || '',
+      type: doc.querySelector('meta[property="og:type"]')?.content || '',
     },
   };
 
