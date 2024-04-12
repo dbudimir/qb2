@@ -1,12 +1,16 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
 
 // Components
 import SocialLinks from './shared/SocialLinks';
-import EmailForm from './shared/EmailForm';
+const EmailForm = dynamic(() => import('./shared/EmailForm'), { ssr: false });
+
+// import EmailForm from './shared/EmailForm';
 
 const featuredLogos = [
   {
@@ -232,9 +236,8 @@ const links = [
   { text: 'Team Maker', href: '/create-team' },
 ];
 
-const Footer = ({ link }) => {
+const Footer = ({}) => {
   const year = new Date().getFullYear();
-
   return (
     <>
       <FeaturedContainer>

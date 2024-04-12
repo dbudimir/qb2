@@ -160,6 +160,19 @@ const SchedulePage = styled.div`
     margin-bottom: 32px;
   }
 
+  .regular-season-banner {
+    background: #b565f3;
+    width: max-content;
+    display: block;
+    text-align: center;
+    padding: 12px 48px;
+    margin: 0 auto 32px auto;
+    font-weight: 800;
+    border-radius: 100px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+
   // prettier-ignore
   @media screen and (max-width: 1024px) { .team { a { font-size: 14px ; } } }
 

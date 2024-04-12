@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import dayjs from 'dayjs';
-import { cleanText, cleanHead, cleanPosts } from '/utils/cleanText';
+import { cleanHead, cleanPosts } from '/utils/cleanText';
 import { getReturn, getPage } from '/utils/getReturn';
 
 import buildQuery from '/utils/buildQuery';
@@ -11,7 +11,8 @@ import WNBASchedule from '/components/pages/WNBASchedule';
 
 const year = dayjs().year();
 const tags = [
-  { name: `${year} Schedule`, id: 'schedule-content' },
+  { name: `${year} Preseason Schedule`, id: 'schedule-content' },
+  { name: `${year} Schedule`, id: 'regular-season' },
   { name: 'Season Info', id: 'season-info' },
 ];
 

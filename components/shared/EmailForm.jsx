@@ -160,7 +160,7 @@ const EmailForm = ({ progress, type }) => {
   return (
     <EmailFormContainer
       id="email-form"
-      className={`${progress > 10 ? 'show' : ''}${type || ''}`}
+      className={`${progress > 10 ? 'show' : ''} ${type || ''}`}
     >
       <EnvelopeIcon stroke="#ffffff" />
       {showThankYou ? (

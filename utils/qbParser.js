@@ -45,7 +45,7 @@ const qbParser = ({ nodeList }, depth) => {
             return <ol key={`ol${i}`}>{parse(innerHTML)}</ol>;
           case 'FORM':
             return (
-              <form key={`form${i}`} class="donate-button">
+              <form key={`form${i}`} className="donate-button">
                 {parse(innerHTML)}
               </form>
             );
