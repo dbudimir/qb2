@@ -1,3 +1,38 @@
+const homePageRedirectUrls = [
+  '/basketball-analysis-package',
+  '/basketball/gianna-bryant',
+  '/basketball/why-does-nobody-watch-the-wnba',
+  '/basketball/sue-bird-twitter',
+  '/basketball/wnba-predictions',
+  '/basketball/chicago-sky-best-players',
+  '/basketball/wnba-free-agency',
+  '/basketball/wnba-top-scorers',
+  '/basketball/best-womens-basketball-socks',
+  '/basketball/best-pool-basketball-hoops',
+  '/basketball/best-portable-basketball-hoops',
+  '/basketball/best-basketball-net-backstops',
+  '/basketball/best-massage-guns-for-basketball-players',
+  '/basketball/wilson-evolution-basketball',
+  '/basketball/wilson-sporting-goods-retail-stores',
+  '/basketball/basketball-mothers-day-gifts',
+  '/basketball/custom-basketballs',
+  '/basketball/seattle-storm-announcers',
+  '/basketball/best-gym-duffle-bags',
+  '/basketball/best-backpacks',
+  '/basketball/best-basketball-pumps',
+  '/basketball/candace-parker-draymond-green-show',
+  '/basketball/basketball-arcade-games',
+  '/basketball/valentines-gifts',
+  '/basketball/sue-bird-autographed-memorabilia',
+  '/basketball/best-basketball-trainers-on-instagram',
+];
+
+const homePageRedirects = homePageRedirectUrls.map((url) => ({
+  source: url,
+  destination: '/',
+  permanent: true,
+}));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compiler: {
@@ -17,19 +52,10 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      ...homePageRedirects,
       {
         source: '/:category*/:slug*/amp',
         destination: '/:category*/:slug*',
-        permanent: true,
-      },
-      {
-        source: '/basketball-analysis-package',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/basketball/sue-bird-autographed-memorabilia',
-        destination: '/',
         permanent: true,
       },
       {
@@ -55,11 +81,6 @@ const nextConfig = {
       {
         source: '/basketball/chicago-sky-best-players',
         destination: '/basketball/tag/chicago-sky',
-        permanent: true,
-      },
-      {
-        source: '/basketball/best-basketball-trainers-on-instagram',
-        destination: '/',
         permanent: true,
       },
     ];
