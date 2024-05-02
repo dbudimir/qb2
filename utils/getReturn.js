@@ -61,7 +61,11 @@ export const getAuthor = async (authorSlug) => {
 
 export const getAdminSettings = async () => {
   // Fallback to the public value
-  const domain = process.env.DOMAIN || process.env.NEXT_PUBLIC_DOMAIN;
+  const domain =
+    process.env.ENV === 'production'
+      ? 'https://queenballers.com'
+      : 'http://localhost:8007';
+
   // Cannot try catch around this request because it is called in the layout
   const adminSettings = await fetch(`${domain}/api/admin-settings`, {
     cache: 'no-store',
