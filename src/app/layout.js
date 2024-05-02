@@ -1,30 +1,16 @@
 // Global styles
 import '../../public/static/style.scss';
-// import { Inter } from 'next/font/google';
-// const inter = Inter({ subsets: ['latin'] });
 
 // Utils
 import { GoogleTagManager } from '@next/third-parties/google';
+import { getAdminSettings } from '/utils/getReturn';
 import StyledComponentsRegistry from '../../lib/registry';
-import AppContext from './context';
+
 // Components
 import NavAd from '../../components/ads/NavAd';
 import Nav from '../../components/nav/Nav';
 import BannerAd from '../../components/ads/BannerAd';
 import Footer from '../../components/Footer';
-
-async function getData() {
-  try {
-    const adminSettings = await fetch(
-      `${process.env.DOMAIN}/api/admin-settings`,
-      { cache: 'no-store' }
-    ).then((res) => res.json());
-
-    return { ...adminSettings[0] };
-  } catch (error) {
-    throw new Error('Failed to fetch data');
-  }
-}
 
 export const metadata = {
   icons: {
@@ -44,25 +30,29 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const adminSettings = await getData();
+  // Data
+  let adminSettings = {};
+  try {
+    adminSettings = await getAdminSettings().then((res) => res);
+  } catch (error) {
+    throw new Error(`Failed to fetch data fetching admin settings`);
+  }
 
   return (
     <html lang="en">
       <body>
-        <AppContext adminSettings={adminSettings}>
-          <StyledComponentsRegistry>
-            <NavAd
-              bannerUrl={adminSettings.bannerUrl}
-              bannerText={adminSettings.bannerText}
-            />
+        <StyledComponentsRegistry>
+          <NavAd
+            bannerUrl={adminSettings?.bannerUrl}
+            bannerText={adminSettings?.bannerText}
+          />
 
-            <Nav />
+          <Nav />
 
-            <BannerAd bannerAd={adminSettings.bannerAd} />
-            {children}
-            <Footer />
-          </StyledComponentsRegistry>
-        </AppContext>
+          <BannerAd bannerAd={adminSettings?.bannerAd} />
+          {children}
+          <Footer />
+        </StyledComponentsRegistry>
       </body>
 
       <GoogleTagManager gtmId="GTM-MNGJZC9" />

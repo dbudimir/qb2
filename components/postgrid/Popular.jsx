@@ -1,9 +1,11 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useContext } from 'react';
-import { AppContext } from 'src/app/context';
+
+import { getAdminSettings } from '/utils/getReturn';
+
 import styled from 'styled-components';
 
 const PopularContainer = styled.div`
@@ -68,13 +70,24 @@ const PopularContainer = styled.div`
   }
 `;
 
-const Popular = ({ homePage }) => {
-  const adminSettings = useContext(AppContext);
+const Popular = ({ homePage, adminSettings }) => {
+  const [postArray, setPostArray] = useState([]);
+  useEffect(() => {
+    const fetchTopPosts = async () => {
+      try {
+        const response = await getAdminSettings().then((res) => res);
+        const posts = response.topPosts && Object.values(response.topPosts);
 
-  let postArray = [];
-  if (adminSettings) {
-    postArray = adminSettings.topPosts && Object.values(adminSettings.topPosts);
-  }
+        if (response) {
+          setPostArray(posts);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    !postArray.length && fetchTopPosts();
+  });
 
   return (
     postArray && (

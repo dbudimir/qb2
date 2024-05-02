@@ -26,9 +26,9 @@ async function connectDb() {
 
   if (!cached.promise) {
     const opts = {
-      useNewUrlParser: true,
       useUnifiedTopology: true,
       bufferCommands: false,
+      // useNewUrlParser: true,
       // bufferMaxEntries: 0,
       // useFindAndModify: false,
       // useCreateIndex: true,

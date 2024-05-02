@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useContext } from 'react';
-import { AppContext } from 'src/app/context';
+import { useEffect, useState } from 'react';
+import { getAdminSettings } from '/utils/getReturn';
 
 // Components
 import BannerDropdown from '/components/admin/BannerDropdown';
@@ -85,14 +85,27 @@ const AdminPageContainer = styled.div`
 `;
 
 const Admin = ({}) => {
-  // Data
-  const adminSettings = useContext(AppContext);
-
   // Page state
   const [password, setPassword] = useState('');
-  const [settings, setSettings] = useState(adminSettings);
+  const [settings, setSettings] = useState(null);
   const [showManagePlayerImages, setShowManagePlayerImages] = useState(false);
   const [showContents, setShowContents] = useState(false);
+
+  useEffect(() => {
+    const fetchAdminSettings = async () => {
+      try {
+        const response = await getAdminSettings().then((res) => res);
+
+        if (response) {
+          setSettings(response);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    !settings && fetchAdminSettings();
+  });
 
   const showAdmin = () => {
     if (password === 'qbmm') setShowContents(true);

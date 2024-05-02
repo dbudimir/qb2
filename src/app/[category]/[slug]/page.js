@@ -4,32 +4,30 @@ import dayjs from 'dayjs';
 import { cleanText, cleanHead, cleanPostContent } from '/utils/cleanText';
 import { getReturn, getPost } from '/utils/getReturn';
 import parseMetadata from '/utils/parseMetadata';
-import parseHtmlOnServer from '/utils/parseHtmlOnServer';
 
 // Components
 import PostHeader from '/components/posts/PostHeader';
-import PostContent from '/components/posts/PostContent';
+import PostContainer from '/components/posts/PostContainer';
 import PrevNextPosts from '/components/posts/PrevNextPosts';
+import LazyLoader from '/components/LazyLoader';
+import { Suspense } from 'react';
 
-const getData = async ({ params }) => {
-  const { slug, category } = params;
-
-  // Get stuff
+const getBlogPost = async (slug) => {
   const [blogPost] = await getPost(slug);
-  const [author, title, content] = await Promise.all([
-    getReturn(`${process.env.WP_API}/users/${blogPost.author}`),
-    cleanText(blogPost.title.rendered),
-    cleanPostContent(blogPost.content.rendered),
-  ]);
 
-  // Parse html
-  const parsedContent = parseHtmlOnServer(content);
+  return { blogPost };
+};
+
+const getData = async (blogPost) => {
+  // Get stuff
+  const author = await getReturn(
+    `${process.env.WP_API}/users/${blogPost.author}`
+  );
+
+  const title = await cleanText(blogPost.title.rendered);
 
   return {
-    ...blogPost,
     author,
-    category,
-    content: parsedContent,
     image: blogPost.jetpack_featured_media_url,
     title,
     date: dayjs(blogPost.date).format('MMMM D, YYYY'),
@@ -39,27 +37,28 @@ const getData = async ({ params }) => {
 
 export async function generateMetadata({ params }) {
   // Data fetch here should be cached
-  const data = await getData({ params });
+  const { blogPost } = await getBlogPost(params.slug);
 
   const head = cleanHead(
-    data.yoast_head,
+    blogPost.yoast_head,
     `${params.category}/${params.slug}`,
-    data.jetpack_featured_media_url
+    blogPost.jetpack_featured_media_url
   );
 
   return parseMetadata(head);
 }
 
 const BlogPost = async ({ params }) => {
-  const { author, content, category, slug, date, timeStamp, title, image } =
-    await getData({ params });
+  const { blogPost } = await getBlogPost(params.slug);
+
+  const { author, date, timeStamp, title, image } = await getData(blogPost);
 
   return (
     <>
       {/*Css managed by global style.scss */}
       <div className="post-container">
         <PostHeader
-          category={category}
+          category={params.category}
           title={title}
           author={author}
           date={date}
@@ -67,14 +66,18 @@ const BlogPost = async ({ params }) => {
         <div className="image-container header-image">
           <Image
             src={image}
-            alt={slug}
+            alt={params.slug}
             height={520}
             width={1200}
             quality={25}
             priority={true}
           />
         </div>
-        <PostContent content={content} />
+
+        <Suspense fallback={<LazyLoader classes="home-page" />}>
+          <PostContainer blogPost={blogPost} />
+        </Suspense>
+
         <PrevNextPosts currentPostDate={timeStamp} />
       </div>
     </>

@@ -2,7 +2,7 @@ import buildQuery from '/utils/buildQuery';
 
 export const getReturn = async (url) => {
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, { next: { revalidate: 3600 } });
 
     return res.json();
   } catch (error) {
@@ -14,7 +14,8 @@ export const getReturn = async (url) => {
 export const getPage = async (pageId) => {
   try {
     const res = await fetch(
-      `https://queenballers.wpcomstaging.com/wp-json/wp/v2/pages/${pageId}`
+      `https://queenballers.wpcomstaging.com/wp-json/wp/v2/pages/${pageId}`,
+      { next: { revalidate: 3600 } }
     );
     return res.json();
   } catch (error) {
@@ -26,7 +27,8 @@ export const getPage = async (pageId) => {
 export const getPost = async (postSlug) => {
   try {
     const res = await fetch(
-      `https://queenballers.wpcomstaging.com/wp-json/wp/v2/posts?slug=${postSlug}`
+      `https://queenballers.wpcomstaging.com/wp-json/wp/v2/posts?slug=${postSlug}`,
+      { next: { revalidate: 3600 } }
     );
     return res.json();
   } catch (error) {
@@ -55,4 +57,15 @@ export const getAuthor = async (authorSlug) => {
   );
 
   return author[0];
+};
+
+export const getAdminSettings = async () => {
+  // Fallback to the public value
+  const domain = process.env.DOMAIN || process.env.NEXT_PUBLIC_DOMAIN;
+  // Cannot try catch around this request because it is called in the layout
+  const adminSettings = await fetch(`${domain}/api/admin-settings`, {
+    cache: 'no-store',
+  }).then((res) => res.json());
+
+  return { ...adminSettings[0] };
 };

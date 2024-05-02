@@ -50,6 +50,19 @@ const nextConfig = {
       { protocol: 'https', hostname: 'upload.wikimedia.org', pathname: '**' },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        net: false,
+        tls: false,
+        fs: false,
+        child_process: false,
+        canvas: false,
+      };
+    }
+
+    return config;
+  },
   async redirects() {
     return [
       ...homePageRedirects,

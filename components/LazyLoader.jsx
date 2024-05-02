@@ -24,6 +24,11 @@ const LazyLoaderContainer = styled.figure`
     display: block;
   }
 
+  // Loader appearing on the home page
+  &.home-page {
+    margin: 50px auto;
+  }
+
   .react-tweet-theme {
     display: flex;
     margin: 0 auto !important;
@@ -82,7 +87,7 @@ const LazyLoader = ({ index, classes, type, children }) => {
       )}
       <LazyLoaderContainer
         className={classes}
-        id={`content${index}`}
+        id={`content${index ? index : ''}`}
         ref={contentRef}
       >
         {loadContent && children}
