@@ -74,15 +74,11 @@ const Popular = ({ homePage, adminSettings }) => {
   const [postArray, setPostArray] = useState([]);
   useEffect(() => {
     const fetchTopPosts = async () => {
-      try {
-        const response = await getAdminSettings().then((res) => res);
-        const posts = response.topPosts && Object.values(response.topPosts);
+      const response = await getAdminSettings().then((res) => res);
+      const posts = response.topPosts && Object.values(response.topPosts);
 
-        if (response) {
-          setPostArray(posts);
-        }
-      } catch (error) {
-        console.log(error);
+      if (response) {
+        setPostArray(posts);
       }
     };
 

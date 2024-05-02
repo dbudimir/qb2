@@ -20,11 +20,8 @@ const PostContainer = async ({ blogPost }) => {
   // Data
   let adminSettings = {};
   const content = await getContent(blogPost);
-  try {
-    adminSettings = await getAdminSettings().then((res) => res);
-  } catch (error) {
-    throw new Error(`Failed to fetch data fetching admin settings`);
-  }
+
+  adminSettings = await getAdminSettings().then((res) => res);
 
   return (
     <PostContent

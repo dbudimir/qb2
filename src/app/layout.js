@@ -32,11 +32,8 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   // Data
   let adminSettings = {};
-  try {
-    adminSettings = await getAdminSettings().then((res) => res);
-  } catch (error) {
-    throw new Error(`Failed to fetch data fetching admin settings`);
-  }
+
+  adminSettings = await getAdminSettings().then((res) => res);
 
   return (
     <html lang="en">

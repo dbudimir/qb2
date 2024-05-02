@@ -93,14 +93,10 @@ const Admin = ({}) => {
 
   useEffect(() => {
     const fetchAdminSettings = async () => {
-      try {
-        const response = await getAdminSettings().then((res) => res);
+      const response = await getAdminSettings().then((res) => res);
 
-        if (response) {
-          setSettings(response);
-        }
-      } catch (error) {
-        console.log(error);
+      if (response) {
+        setSettings(response);
       }
     };
 
