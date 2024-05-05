@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // Components
-import SocialLinks from "../shared/SocialLinks";
+import SocialLinks from '../../shared/SocialLinks';
 
 const UpperContainer = styled.div`
   width: 100%;

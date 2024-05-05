@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { getAdminSettings } from '/utils/getReturn';
-
 import styled from 'styled-components';
 
 const PopularContainer = styled.div`
@@ -70,11 +68,16 @@ const PopularContainer = styled.div`
   }
 `;
 
-const Popular = ({ homePage, adminSettings }) => {
-  const [postArray, setPostArray] = useState([]);
+const Popular = ({ homePage }) => {
+  const [postArray, setPostArray] = useState(null);
   useEffect(() => {
     const fetchTopPosts = async () => {
-      const response = await getAdminSettings().then((res) => res);
+      const [response] = await fetch(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/api/admin-settings`,
+        {
+          cache: 'no-store',
+        }
+      ).then((res) => res.json());
       const posts = response.topPosts && Object.values(response.topPosts);
 
       if (response) {
@@ -82,30 +85,29 @@ const Popular = ({ homePage, adminSettings }) => {
       }
     };
 
-    !postArray.length && fetchTopPosts();
+    !postArray && fetchTopPosts();
   });
 
   return (
-    postArray && (
-      <PopularContainer className="popular-posts">
-        <h2 className="highlight-header">Popular Reads</h2>
-        {postArray.map((post, i) => (
+    <PopularContainer className="popular-posts">
+      <h2 className="highlight-header">Popular Reads</h2>
+      {postArray &&
+        postArray.map((post, i) => (
           <Link key={`popular-post-${i}`} href={post.url}>
             {post.title}
           </Link>
         ))}
-        {/* Shows cool graphic on home page */}
-        {homePage && (
-          <div className="image-container">
-            <Image
-              src="https://queenballers.wpcomstaging.com/wp-content/uploads/2022/07/wnbalogos.webp"
-              fill="true"
-              alt="Team logos"
-            />
-          </div>
-        )}
-      </PopularContainer>
-    )
+      {/* Shows cool graphic on home page */}
+      {/* {homePage && (
+        <div className="image-container">
+          <Image
+            src="https://queenballers.wpcomstaging.com/wp-content/uploads/2022/07/wnbalogos.webp"
+            fill="true"
+            alt="Team logos"
+          />
+        </div>
+      )} */}
+    </PopularContainer>
   );
 };
 

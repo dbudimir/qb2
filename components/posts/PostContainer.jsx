@@ -2,7 +2,6 @@
 
 // Utils
 import { cleanPostContent } from '/utils/cleanText';
-import { getAdminSettings } from '/utils/getReturn';
 import parseHtmlOnServer from '/utils/parseHtmlOnServer';
 
 // Components
@@ -18,18 +17,9 @@ const getContent = async (blogPost) => {
 
 const PostContainer = async ({ blogPost }) => {
   // Data
-  let adminSettings = {};
   const content = await getContent(blogPost);
 
-  adminSettings = await getAdminSettings().then((res) => res);
-
-  return (
-    <PostContent
-      content={content}
-      adminSettings={adminSettings}
-      className="content"
-    />
-  );
+  return <PostContent content={content} className="content" />;
 };
 
 export default PostContainer;

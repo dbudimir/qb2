@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev -p 8007",
     "dev-turbo": "next dev --turbo -p 8007",
-    "build": "next build",
-    "start": "next start -p 8010",
+    "build": "NEXT_PUBLIC_DOMAIN=https://queenballers.club next build",
+    "start": "NEXT_PUBLIC_DOMAIN=https://queenballers.club next start -p 8010",
     "lint": "next lint"
   },
   "dependencies": {
@@ -26,6 +26,7 @@
     "react-share": "^5.0.3",
     "react-tweet": "^3.2.0",
     "sass": "^1.69.5",
+    "sharp": "^0.33.3",
     "styled-components": "^6.1.1",
     "vercel": "^33.5.1"
   },

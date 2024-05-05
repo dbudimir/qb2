@@ -9,7 +9,7 @@ import Popular from '/components/postgrid/Popular';
 // Styles // import order matters
 import PostContentContainer from '/components/style/PostContentContainer';
 
-const PostContent = ({ content, adminSettings }) => {
+const PostContent = ({ content }) => {
   const [pageContent, setPageContent] = useState(content);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const PostContent = ({ content, adminSettings }) => {
 
     const splicedArray = [
       ...parsedArray1,
-      <Popular adminSettings={adminSettings} key="popular-posts" />,
+      <Popular key="popular-posts" />,
       ...parsedArray2,
     ];
 

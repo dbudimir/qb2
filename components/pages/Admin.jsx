@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getAdminSettings } from '/utils/getReturn';
 
 // Components
 import BannerDropdown from '/components/admin/BannerDropdown';
@@ -93,7 +92,12 @@ const Admin = ({}) => {
 
   useEffect(() => {
     const fetchAdminSettings = async () => {
-      const response = await getAdminSettings().then((res) => res);
+      const [response] = await fetch(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/api/admin-settings`,
+        {
+          cache: 'no-store',
+        }
+      ).then((res) => res.json());
 
       if (response) {
         setSettings(response);

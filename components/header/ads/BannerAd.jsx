@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const BannerAdContainer = styled.a`
   display: flex;
@@ -23,19 +23,21 @@ const BannerAdContainer = styled.a`
   }
 `;
 
-const BannerAd = ({ bannerAd }) => {
+const BannerAd = ({ adminSettings }) => {
   return (
     <BannerAdContainer
-      href={bannerAd.bannerAdUrl}
+      href={adminSettings.bannerAd.bannerAdUrl}
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Image
-        src={bannerAd.bannerAdImageUrl}
-        width={728}
-        height={90}
-        alt="Learn More"
-      />
+      {adminSettings.bannerAd && (
+        <Image
+          src={adminSettings.bannerAd.bannerAdImageUrl}
+          width={728}
+          height={90}
+          alt="Learn More"
+        />
+      )}
     </BannerAdContainer>
   );
 };

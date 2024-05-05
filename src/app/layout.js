@@ -3,14 +3,11 @@ import '../../public/static/style.scss';
 
 // Utils
 import { GoogleTagManager } from '@next/third-parties/google';
-import { getAdminSettings } from '/utils/getReturn';
 import StyledComponentsRegistry from '../../lib/registry';
 
 // Components
-import NavAd from '../../components/ads/NavAd';
-import Nav from '../../components/nav/Nav';
-import BannerAd from '../../components/ads/BannerAd';
-import Footer from '../../components/Footer';
+import Header from '/components/header/Header';
+import Footer from '/components/Footer';
 
 export const metadata = {
   icons: {
@@ -30,23 +27,11 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  // Data
-  let adminSettings = {};
-
-  adminSettings = await getAdminSettings().then((res) => res);
-
   return (
     <html lang="en">
       <body>
         <StyledComponentsRegistry>
-          <NavAd
-            bannerUrl={adminSettings?.bannerUrl}
-            bannerText={adminSettings?.bannerText}
-          />
-
-          <Nav />
-
-          <BannerAd bannerAd={adminSettings?.bannerAd} />
+          <Header />
           {children}
           <Footer />
         </StyledComponentsRegistry>

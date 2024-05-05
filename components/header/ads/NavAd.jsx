@@ -26,11 +26,11 @@ const NavAdContainer = styled.div`
   }
 `;
 
-const NavAd = ({ bannerUrl, bannerText }) => {
+const NavAd = ({ adminSettings }) => {
   return (
     <NavAdContainer>
-      <a href={bannerUrl} target="_blank" rel="noreferrer">
-        {bannerText}
+      <a href={adminSettings.bannerUrl} target="_blank" rel="noreferrer">
+        {adminSettings.bannerText ? adminSettings.bannerText : ' '}
       </a>
     </NavAdContainer>
   );

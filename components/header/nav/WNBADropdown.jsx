@@ -4,10 +4,10 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 // Data
-import teams from '../../public/static/teams.json';
+import teams from '/public/static/teams.json';
 
 // Components
-import ChevronDown from '../icons/CarrotDownIcon';
+import ChevronDown from '/components/icons/CarrotDownIcon';
 
 const DropdownContainer = styled.div`
   padding: 6px;

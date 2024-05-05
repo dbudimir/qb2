@@ -7,14 +7,14 @@ import { usePathname } from 'next/navigation';
 // Components
 import NavLogo from './NavLogo';
 import NavUpper from './NavUpper';
-import SearchBox from '../SearchBox';
-import GrabIcon from '../icons/GrabIcon';
-import CarrotDownIcon from '../icons/CarrotDownIcon';
+import SearchBox from '../../SearchBox';
+import GrabIcon from '../../icons/GrabIcon';
+import CarrotDownIcon from '../../icons/CarrotDownIcon';
 import WNBADropdown from './WNBADropdown';
 import ShopDropdown from './ShopDropdown';
-import EmailForm from '../shared/EmailForm';
-import Share from '../shared/Share';
-import DonateBar from '../shared/DonateBar';
+import EmailForm from '../../shared/EmailForm';
+import Share from '../../shared/Share';
+import DonateBar from '../../shared/DonateBar';
 import ScrollToTop from './ScrollToTop';
 
 import styled from 'styled-components';
