@@ -29,6 +29,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-MNGJZC9" />
       <body>
         <StyledComponentsRegistry>
           <Header />
@@ -36,8 +37,6 @@ export default async function RootLayout({ children }) {
           <Footer />
         </StyledComponentsRegistry>
       </body>
-
-      <GoogleTagManager gtmId="GTM-MNGJZC9" />
     </html>
   );
 }

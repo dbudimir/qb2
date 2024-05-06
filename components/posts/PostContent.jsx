@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 
 // Components
-import Popular from '/components/postgrid/Popular';
+import PopularContainer from '/components/postgrid/PopularContainer';
 
 // Styles // import order matters
 import PostContentContainer from '/components/style/PostContentContainer';
@@ -18,7 +18,7 @@ const PostContent = ({ content }) => {
 
     const splicedArray = [
       ...parsedArray1,
-      <Popular key="popular-posts" />,
+      <PopularContainer key="popular-posts" />,
       ...parsedArray2,
     ];
 

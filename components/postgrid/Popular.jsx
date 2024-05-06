@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import styled from 'styled-components';
 
-const PopularContainer = styled.div`
+const PopularPostsContainer = styled.div`
   background: #ffffff;
   border: 1px solid #393939;
   box-shadow: -8px 8px #393939;
@@ -68,37 +67,21 @@ const PopularContainer = styled.div`
   }
 `;
 
-const Popular = ({ homePage }) => {
-  const [postArray, setPostArray] = useState(null);
-  useEffect(() => {
-    const fetchTopPosts = async () => {
-      const [response] = await fetch(
-        `${process.env.NEXT_PUBLIC_DOMAIN}/api/admin-settings`,
-        {
-          cache: 'no-store',
-        }
-      ).then((res) => res.json());
-      const posts = response.topPosts && Object.values(response.topPosts);
-
-      if (response) {
-        setPostArray(posts);
-      }
-    };
-
-    !postArray && fetchTopPosts();
-  });
+const Popular = ({ adminSettings, homePage }) => {
+  const postArray =
+    adminSettings?.topPosts && Object.values(adminSettings.topPosts);
 
   return (
-    <PopularContainer className="popular-posts">
+    <PopularPostsContainer className="popular-posts">
       <h2 className="highlight-header">Popular Reads</h2>
-      {postArray &&
+      {adminSettings &&
         postArray.map((post, i) => (
           <Link key={`popular-post-${i}`} href={post.url}>
             {post.title}
           </Link>
         ))}
       {/* Shows cool graphic on home page */}
-      {/* {homePage && (
+      {homePage && (
         <div className="image-container">
           <Image
             src="https://queenballers.wpcomstaging.com/wp-content/uploads/2022/07/wnbalogos.webp"
@@ -106,8 +89,8 @@ const Popular = ({ homePage }) => {
             alt="Team logos"
           />
         </div>
-      )} */}
-    </PopularContainer>
+      )}
+    </PopularPostsContainer>
   );
 };
 

@@ -10,7 +10,7 @@ import styled from 'styled-components';
 // Components
 import Post from '/components/postgrid/Post';
 import Highlight from '/components/postgrid/Highlight';
-import Popular from '/components/postgrid/Popular';
+import PopularContainer from '/components/postgrid/PopularContainer';
 
 const LatestPostsContainer = styled.div`
   h3 {
@@ -206,7 +206,7 @@ const LatestPosts = ({ latestPosts, homePage, hideHeader }) => {
             const height = first ? 400 : featured ? 305 : 305;
 
             return post.type === 'popular' ? (
-              <Popular key={`popular${index}`} homePage={homePage} />
+              <PopularContainer key={`popular${index}`} homePage={homePage} />
             ) : post.type === 'highlights' ? (
               <Highlight key={`highlight${index}`} highlight={post} />
             ) : (
