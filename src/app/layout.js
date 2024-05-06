@@ -2,7 +2,8 @@
 import '../../public/static/style.scss';
 
 // Utils
-import { GoogleTagManager } from '@next/third-parties/google';
+// import { GoogleTagManager } from '@next/third-parties/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import StyledComponentsRegistry from '../../lib/registry';
 
 // Components
@@ -29,7 +30,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-MNGJZC9" />
+      {/* <GoogleTagManager gtmId="GTM-MNGJZC9" /> */}
       <body>
         <StyledComponentsRegistry>
           <Header />
@@ -37,6 +38,7 @@ export default async function RootLayout({ children }) {
           <Footer />
         </StyledComponentsRegistry>
       </body>
+      <GoogleAnalytics gaId="G-R5EZHH3CVM" />
     </html>
   );
 }
