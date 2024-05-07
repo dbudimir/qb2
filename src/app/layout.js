@@ -3,6 +3,7 @@ import '../../public/static/style.scss';
 
 // Utils
 import { Suspense } from 'react';
+
 // import { GoogleTagManager } from '@next/third-parties/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import StyledComponentsRegistry from '../../lib/registry';
