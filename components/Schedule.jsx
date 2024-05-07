@@ -6,9 +6,13 @@ import getTeam from '/utils/getTeam';
 import { promises as fs } from 'fs';
 
 const Schedule = async ({ teamSchedule }) => {
+  console.log('process cwd', process.cwd());
+  console.log('___dirname', __dirname);
+  console.log('process env', process.env);
   // Data
+  const root = process.env.ENV === 'production' ? '' : process.cwd();
   const file = await fs.readFile(
-    process.cwd() + '/public/static/2024schedule.json',
+    `${root}/public/static/2024schedule.json`,
     'utf8'
   );
   const fullSchedule2024 = JSON.parse(file);

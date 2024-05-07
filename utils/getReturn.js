@@ -53,7 +53,7 @@ export const getTag = async (tagSlug) => {
 
 export const getAuthor = async (authorSlug) => {
   const author = await getReturn(
-    ` ${process.env.WP_API}/users?slug=${authorSlug}`
+    `${process.env.WP_API}/users?slug=${authorSlug}`
   );
 
   return author[0];

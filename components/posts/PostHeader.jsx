@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -94,7 +94,7 @@ const PostHeader = ({ category, title, author, date }) => {
       <h1>{title}</h1>
       <span className="header-meta">
         By
-        <Link href={`/author/${author.slug}`}>{author.name}</Link>|
+        <Link href={`/author/${author.slug}`}>{author.name}</Link>
         {twitterHandle && (
           <a
             href={`https://twitter.com/${twitterHandle}`}

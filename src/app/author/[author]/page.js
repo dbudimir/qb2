@@ -1,7 +1,5 @@
-// Pages listing all all posts with a matching tag (queenballers.club/basketball/tag)
-
 // Utils
-import { getReturn, getTag } from '/utils/getReturn';
+import { getReturn, getAuthor } from '/utils/getReturn';
 import { cleanPosts, cleanHead } from '/utils/cleanText';
 import parseMetadata from '/utils/parseMetadata';
 import buildQuery from '/utils/buildQuery';
@@ -12,16 +10,16 @@ import LatestPosts from '/components/postgrid/LatestPosts';
 import HeaderText from '/components/shared/HeaderText';
 
 const getData = async ({ params }) => {
-  const { tag } = params;
+  const { author } = params;
 
-  // Function accepts the tag url slug
-  const currentTag = await getTag(tag);
+  // Function accepts the author url slug
+  const currentAuthor = await getAuthor(author);
 
   const posts = await getReturn(
     buildQuery({
       objectType: 'posts',
-      filter: 'tags',
-      filterKey: currentTag.id,
+      filter: 'author',
+      filterKey: currentAuthor.id,
       fields: [
         'link',
         'title',
@@ -38,20 +36,20 @@ const getData = async ({ params }) => {
   const cleanLatestPosts = await cleanPosts(latestPosts);
 
   return {
-    tag: currentTag,
+    author: currentAuthor,
     posts: cleanLatestPosts,
   };
 };
 
 export async function generateMetadata({ params }) {
-  const { category, tag } = params;
+  const { author } = params;
 
-  // Function accepts the tag url slug
-  const currentTag = await getTag(tag);
+  // Function accepts the author url slug
+  const currentAuthor = await getAuthor(author);
 
   const head = await cleanHead(
-    currentTag.yoast_head,
-    `${category}/tag/${tag}`,
+    currentAuthor.yoast_head,
+    `author/${author}`,
     'https://queenballers.club/static/images/qb-background.png'
   ).replace(
     /<meta name="robots".*>/,
@@ -62,18 +60,18 @@ export async function generateMetadata({ params }) {
   return parseMetadata(head);
 }
 
-const TagPage = async ({ params }) => {
-  const { tag, posts } = await getData({ params });
+const AuthorPage = async ({ params }) => {
+  const { author, posts } = await getData({ params });
 
   return (
     <div className="page-container content">
       <HeaderText
-        titleContent={<h1>{tag.name}</h1>}
-        bodyContent={<p className="page-desc">{tag.description}</p>}
+        titleContent={<h1>{author.name}</h1>}
+        bodyContent={<p className="page-desc">{author.description}</p>}
       />
       <LatestPosts latestPosts={[...posts]} homePage />
     </div>
   );
 };
 
-export default TagPage;
+export default AuthorPage;

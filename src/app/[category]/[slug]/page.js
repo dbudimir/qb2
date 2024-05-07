@@ -1,7 +1,7 @@
 // Utils
 import Image from 'next/image';
 import dayjs from 'dayjs';
-import { cleanText, cleanHead, cleanPostContent } from '/utils/cleanText';
+import { cleanText, cleanHead } from '/utils/cleanText';
 import { getReturn, getPost } from '/utils/getReturn';
 import parseMetadata from '/utils/parseMetadata';
 
