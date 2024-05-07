@@ -10,11 +10,9 @@ const Schedule = async ({ teamSchedule }) => {
   console.log('___dirname', __dirname);
   console.log('process env', process.env);
   // Data
-  const root = process.env.ENV === 'production' ? '' : process.cwd();
-  const file = await fs.readFile(
-    `${root}/public/static/2024schedule.json`,
-    'utf8'
-  );
+  const root =
+    process.env.ENV === 'production' ? '' : `${process.cwd()}/public`;
+  const file = await fs.readFile(`${root}/static/2024schedule.json`, 'utf8');
   const fullSchedule2024 = JSON.parse(file);
   const gameDates = teamSchedule ? teamSchedule : fullSchedule2024.gameDates;
 
