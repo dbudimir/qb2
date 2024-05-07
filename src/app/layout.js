@@ -2,12 +2,16 @@
 import '../../public/static/style.scss';
 
 // Utils
+import { Suspense } from 'react';
 // import { GoogleTagManager } from '@next/third-parties/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import StyledComponentsRegistry from '../../lib/registry';
 
 // Components
-import Header from '/components/header/Header';
+import {
+  HeaderContainer,
+  HeaderContainerSkeleton,
+} from '/components/header/HeaderContainer';
 import Footer from '/components/Footer';
 
 export const metadata = {
@@ -30,14 +34,16 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* <GoogleTagManager gtmId="GTM-MNGJZC9" /> */}
       <body>
         <StyledComponentsRegistry>
-          <Header />
+          <Suspense fallback={<HeaderContainerSkeleton />}>
+            <HeaderContainer />
+          </Suspense>
           {children}
           <Footer />
         </StyledComponentsRegistry>
       </body>
+      {/* <GoogleTagManager gtmId="GTM-MNGJZC9" /> */}
       <GoogleAnalytics gaId="G-R5EZHH3CVM" />
     </html>
   );

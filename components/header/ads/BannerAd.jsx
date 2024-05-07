@@ -30,7 +30,7 @@ const BannerAd = ({ adminSettings }) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      {adminSettings.bannerAd && (
+      {adminSettings.bannerAd?.bannerAdImageUrl && (
         <Image
           src={adminSettings.bannerAd.bannerAdImageUrl}
           width={728}

@@ -5,14 +5,8 @@ import NavAd from '/components/header/ads/NavAd';
 import Nav from '/components/header/nav/Nav';
 import BannerAd from '/components/header/ads/BannerAd';
 
-const Header = async ({}) => {
+const Header = async ({ adminSettings }) => {
   // Data
-  const [adminSettings] = await fetch(
-    `${process.env.NEXT_PUBLIC_DOMAIN}/api/admin-settings`,
-    {
-      cache: 'no-store',
-    }
-  ).then((res) => res.json());
 
   return (
     <>
