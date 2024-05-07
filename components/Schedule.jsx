@@ -3,11 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import getTeam from '/utils/getTeam';
+import { promises as fs } from 'fs';
 
-// Data
-import fullSchedule2024 from '/public/static/2024schedule.json';
-
-const Schedule = ({ teamSchedule }) => {
+const Schedule = async ({ teamSchedule }) => {
+  // Data
+  const file = await fs.readFile(
+    process.cwd() + '/public/static/2024schedule.json',
+    'utf8'
+  );
+  const fullSchedule2024 = JSON.parse(file);
   const gameDates = teamSchedule ? teamSchedule : fullSchedule2024.gameDates;
 
   return (

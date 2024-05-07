@@ -1,8 +1,5 @@
 'use client';
 
-// Utils
-// import qbParser from '/utils/qbParser';
-
 // Components
 import HeaderText from '/components/shared/HeaderText';
 import Schedule from '/components/Schedule';
