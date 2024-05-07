@@ -176,12 +176,12 @@ const DropdownContainer = styled.div`
 `;
 
 const links = [
-  { text: 'Free Agency', href: '/wnba-free-agency' },
-  { text: 'Draft', href: '/wnba-draft' },
-  { text: 'Schedule', href: '/schedule' },
-  { text: 'All-Star', href: '/wnba-all-star-game' },
-  { text: 'Playoffs', href: '/wnba-playoffs' },
-  { text: 'Finals', href: '/wnba-finals' },
+  { text: 'Free Agency', href: '/wnba-free-agency', prefetch: null },
+  { text: 'Draft', href: '/wnba-draft', prefetch: null },
+  { text: 'Schedule', href: '/schedule', prefetch: false },
+  { text: 'All-Star', href: '/wnba-all-star-game', prefetch: null },
+  { text: 'Playoffs', href: '/wnba-playoffs', prefetch: null },
+  { text: 'Finals', href: '/wnba-finals', prefetch: null },
 ];
 
 const WNBADropdown = ({ show }) => {
@@ -195,7 +195,7 @@ const WNBADropdown = ({ show }) => {
       <div className="links">
         {links.map((link, i) => {
           return (
-            <Link key={`$link${i}`} href={link.href}>
+            <Link key={`$link${i}`} href={link.href} prefetch={link.prefetch}>
               {link.text}
             </Link>
           );
@@ -214,7 +214,7 @@ const WNBADropdown = ({ show }) => {
         )}
         {sortedTeams.map((team, i) => {
           return (
-            <Link key={team.name + i} href={team.hubUrl}>
+            <Link key={team.name + i} href={team.hubUrl} prefetch={false}>
               {team.name}
               <Image
                 className="team-logo"

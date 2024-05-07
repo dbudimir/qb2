@@ -6,10 +6,12 @@
     "dev": "next dev -p 8007",
     "dev-turbo": "next dev --turbo -p 8007",
     "build": "NEXT_PUBLIC_DOMAIN=https://queenballers.club next build",
+    "build:analyze": "ANALYZE=true NEXT_PUBLIC_DOMAIN=https://queenballers.club npm run build",
     "start": "NEXT_PUBLIC_DOMAIN=https://queenballers.club next start -p 8010",
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^14.2.3",
     "@next/third-parties": "^14.2.3",
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
