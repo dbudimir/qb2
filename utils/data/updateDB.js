@@ -1,7 +1,5 @@
 import getUniquePlayers from './parsePlayers';
 
-const axios = require('axios');
-
 const updateDB = async () => {
   console.log('Updating DB...');
 
@@ -20,10 +18,24 @@ const updateDB = async () => {
     player.FGPercent && (playerPayload.FGPercent = player.FG_PCT);
     player.ThreePointPercent && (playerPayload.ThreePointPercent = player.FG3_PCT); // prettier-ignore
 
-    await axios
-      .post('http://localhost:8002/api/players/create', playerPayload)
-      .then((response) => response)
-      .catch((error) => console.log(error));
+    try {
+      const response = await fetch('http://localhost:8002/api/players/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(playerPayload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   });
 };
 

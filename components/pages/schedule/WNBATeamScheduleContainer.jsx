@@ -36,9 +36,13 @@ const getSchedule = async ({ schedule, teamName }) => {
 
 const PostContainer = async ({ title, teamName }) => {
   // Data
-  const root =
-    process.env.ENV === 'production' ? '' : `${process.cwd()}/public`;
-  const file = await fs.readFile(`${root}/static/2024schedule.json`, 'utf8');
+  const path = `${process.cwd()}/public/static/2024schedule.json`;
+  const file = await fs.readFile(path, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+  });
   const fullSchedule2024 = JSON.parse(file);
 
   const teamSchedule = await getSchedule({
