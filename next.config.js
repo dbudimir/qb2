@@ -25,6 +25,8 @@ const homePageRedirectUrls = [
   '/basketball/valentines-gifts',
   '/basketball/sue-bird-autographed-memorabilia',
   '/basketball/best-basketball-trainers-on-instagram',
+  '/basketball/wnba-nfts',
+  '/basketball/wnba-cryptocurrency',
 ];
 
 const homePageRedirects = homePageRedirectUrls.map((url) => ({
