@@ -36,6 +36,11 @@ const PopularPostsContainer = styled.div`
     font-weight: 600;
     cursor: pointer;
 
+    &:last-of-type {
+      margin-bottom: 150px;
+      padding-right: 100px;
+    }
+
     &:hover {
       text-shadow: #fcd100 -1px 1px 0px;
       background: transparent;

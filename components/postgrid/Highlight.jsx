@@ -27,6 +27,17 @@ const HighlightContainer = styled.div`
     margin: 0 auto 18px auto;
     max-width: 840px;
 
+    &.wp-block-embed-youtube {
+      display: flex;
+
+      iframe {
+        /* max-width: 100% !important; */
+        display: block;
+        max-width: auto;
+        max-height: 320px;
+      }
+    }
+
     .embed-youtube {
       position: relative;
       padding-bottom: 56.25%;
